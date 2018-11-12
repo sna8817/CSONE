@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
+	<properties resource="com/shop_CSone/mybatis/db.properties"/>     <!-- 경로의 패키지명까지 풀네임으로 적을 것! -->
+	<!-- Connection 맺는 것을 자동으로 맺어줌 -->
+	
+	
+	<!-- 별명 부여 -->
+<!-- 	<typeAliases>
+		<typeAlias type="" alias=""/>
+	</typeAliases> -->
+	
+	
+	<!-- DB 접속정보 세팅 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+				
+				<!-- 활성화된 최대 커넥션 수 -->
+				<property name="poolMaximumActiveConnections" value="20"/>
+				<!-- 유효상태에서 최대 커넥션 수 -->
+				<property name="poolMaximumIdleConnections" value="20"/>
+				<!-- 최대 커넥션 획득 시간 -->
+				<property name="poolMaximumCheckoutTime" value="20000"/>
+				<!-- pool이 비정상적으로 긴 경우 커넥션을 다시 얻으려고 시도하는 세팅 -->
+				<property name="poolTimeToWait" value="15000"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	
+	<!-- Mapper.xml 파일 생성 -->
+	<mappers>
+		<mapper resource="com/shop_CSone/mybatis/CSoneMapper.xml"/>
+	</mappers>
+	
+	
+	
+</configuration>
