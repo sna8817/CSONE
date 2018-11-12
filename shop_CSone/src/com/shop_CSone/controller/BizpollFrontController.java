@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop_CSone.action.ActionForward;
+import com.shop_CSone.action.BoardDeleteAction;
 import com.shop_CSone.action.BoardDetailAction;
 import com.shop_CSone.action.BoardDownloadAction;
 import com.shop_CSone.action.BoardInsertAction;
 import com.shop_CSone.action.BoardInsertPlayAction;
 import com.shop_CSone.action.BoardListAction;
 import com.shop_CSone.action.BoardSearchAction;
+import com.shop_CSone.action.BoardUpdateAction;
 import com.shop_CSone.action.BoardViewcntAction;
 import com.shop_CSone.action.ConstractAction;
 import com.shop_CSone.action.IdCheckAction;
@@ -143,6 +145,12 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/download.bizpoll")) {
 			action = new BoardDownloadAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardupdate.bizpoll")) {
+			action = new BoardUpdateAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boarddelete.bizpoll")) {
+			action = new BoardDeleteAction();
 			forward = action.excute(request, response);
 		} 
 

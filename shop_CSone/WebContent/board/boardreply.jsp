@@ -107,6 +107,10 @@
     font-size: 16px;
     
 }
+.bd_up_btn > a{
+	color: #fff;
+	text-decoration: none;
+}
 .bd_up_btn:hover {
 	color: #fff;
     background-color: #ffc241;
@@ -190,8 +194,9 @@
 	text-align: center;
     font-weight: bold;
 }
-.line > a {
+.file_a> a {
 	color: #F3969A;
+	text-decoration: none;
 }
 #RD_one > input {
 	width: 800px;
@@ -267,6 +272,16 @@
 }
 
 </style>
+<script type="text/javascript">
+ $(document).on("click","#up_btn", function(){
+	alert("test");
+	location.href="boardupdate.bizpoll?bno=${boardview.bno}";
+ });
+  $(document).on("click","#de_btn", function(){
+	 alert("삭제하시겠습니까?")
+	 location.href="boarddelete.bizpoll?bno=${boardview.bno}";
+  });
+</script>
 <title>게시글</title>
 </head>
 <body id="boardreply_body">
@@ -310,15 +325,15 @@
 		 <tfoot style="border-right-color: lightgray;">
 			<tr class="line">
 				<td>첨부파일</td>
-				<td><a href="download.bizpoll?file=${boardview.filename}">${boardview.filename}
+				<td class="file_a"><a href="download.bizpoll?file=${boardview.filename}">${boardview.filename}
 				(<fmt:formatNumber type="number" value="${boardview.filesize / 1024}" pattern="0.0"/>kb)
 				</a></td>
 			</tr>		 	
 		 </tfoot>
 		</table>
 		<c:if test="${sessionScope.loginUser.id==boardview.writer}">
-		 <button class="bd_dl_btn">삭제</button>
-		 <button class="bd_up_btn">수정</button>
+		 <button class="bd_dl_btn" id="de_btn">삭제</button>
+		 <button class="bd_up_btn" id="up_btn">수정</button>
 		</c:if>
 		
 		<button class="bd_ex_btn"><a href="boardList.bizpoll">목록</a></button>
