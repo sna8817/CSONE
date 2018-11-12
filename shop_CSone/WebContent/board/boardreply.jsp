@@ -35,7 +35,6 @@
 
 
 
-
 /* MIDDLE */
 #table_div {
 	display: block;
