@@ -169,5 +169,24 @@
 		</choose>
 	</insert>		
 	
+	<update id="boardUpdate" parameterType="com.shop_CSone.dto.BoardDTO">
+		<choose>
+			<when test="content !=  null">
+			UPDATE CSBoard
+			SET title=#{title}, content=#{content}, filename=#{filename}, filesize=#{filesize}
+			WHERE bno=#{bno}
+			</when>
+			<otherwise>
+			UPDATE CSBoard
+			SET title=#{title}, filename=#{filename}, filesize=#{filesize}
+			WHERE bno=#{bno}
+			</otherwise>
+		</choose>
+	</update>	
+	
+	<delete id="boardDelete" parameterType="com.shop_CSone.dto.BoardDTO">
+		DELETE FROM CSBoard
+		WHERE bno=#{bno}
+	</delete>
 	
 </mapper>

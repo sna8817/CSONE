@@ -12,7 +12,7 @@
 	margin: 0;
 }
 #boardinsert_body *{
-	font-family: 'Noto Sans KR', sans-serif;
+	/* font-family: 'Noto Sans KR', sans-serif; */
 }
 #boardinsert_body {
 	padding-top: 200px;
@@ -53,6 +53,15 @@
  	border-right: 1px solid white;
 }
 .lineno {
+}
+.btn-file {
+	border: 1px solid pink;
+    color: #fff;
+    background-color: pink;
+    border-radius: 5px;
+}
+#file-name {
+	font-size: 14px;
 }
 
 
@@ -108,9 +117,14 @@
 .line_file {
 	color: #fec8c9;;
 }
+#close_btn {
+	margin-left: 5px;
+}
+
+
+
 
 /* nouser */
-
 #noUser {
 	margin: 0 auto;
 	padding: 50px 30px;
@@ -161,7 +175,6 @@
 	
 	$(document).on("blur","#title",function(){
 		var title = $("#title").val();
-		
 		if(title==""){
 			$(".error").css("display","block");
 		} else {
@@ -170,9 +183,47 @@
 		}
 	});
 	
-	$(document).ready(function{
-		
+	// 전파일 값 넣어놓기
+	$(document).ready(function(){
+		$("#file-name").text("${boardview.filename}");
+		var fileyes = $("#file-name").val();
+		if(fileyes != null){
+			$("#close_btn").css("display","inline-block");
+		}
 	});
+	
+	// 파일업로드 클릭시 업로드파일을 클릭 
+	$(document).on("click", ".btn-file",function(){
+		$("#uploadfile").click();
+	});
+	
+	// 파일이름에 값이 들어올 경우 파일이름을 나타나게 하고, fa아이콘 보이게!
+	$(document).on("change","#uploadfile",function(){
+		var filesize = $(this)[0].files;
+		
+		// 파일 선택시 취소 버튼 누를때 선택된 파일없음으로 뜨는 명령어
+		if(filesize.length <1){
+			$("#file-name").text("선택된 파일 없음");
+			$("#close_btn").css("display","none");
+		} else{
+			var filename = this.files[0].name;
+			$("#file-name").text(filename);
+			$("#close_btn").css("display","inline-block");
+		}
+	});
+	
+	// fa아이콘 클릭시 닫히게!
+	$(document).on("click","#close_btn",function(){
+		$("#uploadfile").replaceWith($("#uploadfile").clone(true)); // 초기화
+		$("#uploadfile").val("");
+		$("#file-name").text("선택된 파일 없음");
+		$("#close_btn").css("display","none");
+	});
+	
+	
+	
+	
+	
 	
 /* 로그인페이지로 이동!!! */
 /* 2. JavaScript사용 */ 
@@ -187,12 +238,12 @@
 	}
 	var s = setInterval(countdown, 1000); /* Start ⇒ 1초단위로 countdown 실행! */
 </script>
-<title>게시글 등록</title>
+<title>게시글 수정</title>
 </head>
 <body id="boardinsert_body">
 	<!-- 게시판 -->
 	<header id="boardr_to">
-		<h3>게시글 등록</h3>
+		<h3>게시글 수정</h3>
 	</header>
 	<c:choose>
 		 <c:when test="${empty sessionScope.loginUser}">
@@ -207,10 +258,11 @@
 		</c:when>
 		<c:otherwise>
 	<article id="boardr_md">
-	<form action="boardInsertPlay.bizpoll" id="frm_btn" name="frm_btn" enctype="multipart/form-data" method="POST">
+	<form action="boardUpdatePlay.bizpoll" id="frm_btn" name="frm_btn" enctype="multipart/form-data" method="POST">
 	<div id="table_div">
 		<table id="boardr_table" border="1px solid lightgray">
 		 <thead style="border-right-color: lightgray;">
+		 	<input type="hidden" value="${boardview.bno}" name="bno" readonly="readonly" id="bno">
 		 	<tr class="line">
 		 		<th style="width: 100px">subject</th>
 		 		<th style="width: 900px;text-align: left;"><input type="text" style="width: -webkit-fill-available" id="title" name="title" value="${boardview.title}">
@@ -235,7 +287,13 @@
 		 <tfoot style="border-right-color: lightgray;">
 			<tr class="line_file">
 				<td>첨부파일</td>
-				<td><input type="file" name="uploadfile" id="uploadfile">
+				<td>
+				<input type="file" name="uploadfile" id="uploadfile" style="display: none" name="now-file-name">
+				<input type="button" class="btn-file" value="파일 선택">
+				<span class="files" id="file-name" style="height: 29px; border: none;">선택된 파일 없음</span>
+				<i class="fa fa-close" id="close_btn" style="display: none"></i>
+				
+				<input type="hidden" id="post-file-name" name="post-file-name" value="${boardview.filename}">
 				</td>
 			</tr>		 	
 		 </tfoot>

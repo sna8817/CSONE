@@ -18,6 +18,7 @@ import com.shop_CSone.action.BoardInsertPlayAction;
 import com.shop_CSone.action.BoardListAction;
 import com.shop_CSone.action.BoardSearchAction;
 import com.shop_CSone.action.BoardUpdateAction;
+import com.shop_CSone.action.BoardUpdatePlayAction;
 import com.shop_CSone.action.BoardViewcntAction;
 import com.shop_CSone.action.ConstractAction;
 import com.shop_CSone.action.IdCheckAction;
@@ -146,13 +147,17 @@ public class BizpollFrontController extends HttpServlet {
 		} else if(command.equals("/download.bizpoll")) {
 			action = new BoardDownloadAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardupdate.bizpoll")) {
+		} else if(command.equals("/boardupdate.bizpoll")) { // boardupdate로 가는 경로
 			action = new BoardUpdateAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boarddelete.bizpoll")) {
+		} else if(command.equals("/boarddelete.bizpoll")) { // boarddelete로 가는 경로
 			action = new BoardDeleteAction();
 			forward = action.excute(request, response);
+		} else if(command.equals("/boardUpdatePlay.bizpoll")) { // boardupdate DB연동->실행
+			action = new BoardUpdatePlayAction();
+			forward = action.excute(request, response);
 		} 
+ 
 
 
 		

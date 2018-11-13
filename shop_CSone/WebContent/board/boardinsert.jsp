@@ -12,7 +12,7 @@
 	margin: 0;
 }
 #boardinsert_body *{
-	font-family: 'Noto Sans KR', sans-serif;
+	/* font-family: 'Noto Sans KR', sans-serif; */
 }
 #boardinsert_body {
 	padding-top: 200px;
@@ -54,7 +54,18 @@
 }
 .lineno {
 }
-
+.btn-file {
+	border: 1px solid pink;
+    color: #fff;
+    background-color: pink;
+    border-radius: 5px;
+}
+#file-name {
+	font-size: 14px;
+}
+#close_btn {
+	margin-left: 5px;
+}
 
 .bd_in_btn {
 	padding: 0;
@@ -170,11 +181,39 @@
 		}
 	});
 	
+	// 파일업로드 클릭시 업로드파일을 클릭 
+	$(document).on("click", ".btn-file",function(){
+		$("#uploadfile").click();
+	});
+	
+	// 파일이름에 값이 들어올 경우 파일이름을 나타나게 하고, fa아이콘 보이게!
+	$(document).on("change","#uploadfile",function(){
+		var filesize = $(this)[0].files;
+		
+		// 파일 선택시 취소 버튼 누를때 선택된 파일없음으로 뜨는 명령어
+		if(filesize.length <1){
+			$("#file-name").text("선택된 파일 없음");
+			$("#close_btn").css("display","none");
+		} else{
+			var filename = this.files[0].name;
+			$("#file-name").text(filename);
+			$("#close_btn").css("display","inline-block");
+		}
+	});
+	
+	// fa아이콘 클릭시 닫히게!
+	$(document).on("click","#close_btn",function(){
+		$("#uploadfile").replaceWith($("#uploadfile").clone(true)); // 초기화
+		$("#uploadfile").val("");
+		$("#file-name").text("선택된 파일 없음");
+		$("#close_btn").css("display","none");
+	});
 	
 	
-/* 로그인페이지로 이동!!! */
-/* 2. JavaScript사용 */ 
-	var cnt=4; /* 3,2,1,0 ⇒  함수가 실행되는 시간이 1초 걸리기 때문에 -1한 4부터 시작 */
+	
+// 로그인페이지로 이동!!!
+//* 2. JavaScript사용 
+	var cnt=4; // 3,2,1,0 ⇒  함수가 실행되는 시간이 1초 걸리기 때문에 -1한 4부터 시작 
 	function countdown(){
 		if(cnt == 0){
 			clearInterval(s);
@@ -183,7 +222,7 @@
 		document.getElementById("rCnt").innerHTML=cnt;
 		cnt--;
 	}
-	var s = setInterval(countdown, 1000); /* Start ⇒ 1초단위로 countdown 실행! */
+	var s = setInterval(countdown, 1000); // Start ⇒ 1초단위로 countdown 실행! 
 </script>
 <title>게시글 등록</title>
 </head>
@@ -233,7 +272,12 @@
 		 <tfoot style="border-right-color: lightgray;">
 			<tr class="line_file">
 				<td>첨부파일</td>
-				<td><input type="file" name="uploadfile" id="uploadfile"></td>
+				<td>
+				<input type="file" name="uploadfile" id="uploadfile" style="display: none">
+				<input type="button" class="btn-file" value="파일 선택">
+				<span class="files" id="file-name" style="height: 29px; border: none;">선택된 파일 없음</span>
+				<i class="fa fa-close" id="close_btn" style="display: none"></i>
+				</td>
 			</tr>		 	
 		 </tfoot>
 		</table>

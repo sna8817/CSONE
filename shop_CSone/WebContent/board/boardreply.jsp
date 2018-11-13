@@ -12,13 +12,112 @@
 	margin: 0;
 }
 #boardreply_body *{
-	font-family: 'Noto Sans KR', sans-serif;
+	/*font-family: 'Noto Sans KR', sans-serif;*/
 }
 #boardreply_body {
 	padding-top: 200px;
 }
 #boardreply_body {
 }
+
+	/* modal 창 */
+	#modal_all {
+		z-index: 10000;
+		position: fixed;
+		top:0px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background: rgba(0,0,0,0.4);
+		padding-top: 100px;
+		display: none;
+		
+	}
+	#modal_in {
+		border: 2px solid #a79c8e;
+		border-radius: 15px;
+		text-align: center;
+		width: 400px;
+		height: 150px;
+		background-color: #f2e9e1;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -150px;
+		margin-left: -200px;
+	}
+	#modal_up {
+		font-size: 16px;
+		text-align: left;
+		color: white;
+		background-color: #f9cdad;
+		border-radius: 14px 14px 0 0;
+	}
+	#draw {
+		padding: 0 10px;
+	}
+	
+	#close_btn {
+		padding: 0 10px;
+		float: right;
+		color: white;
+	}
+	
+	h3 > span {
+		color: #fd999a;
+		font-weight: bold; 
+	}
+	#modal_text {
+		margin: 15px auto;
+		padding: 0 auto;
+	}
+	#modal_text > h3 {
+		margin-top: 30px;
+	}
+	#yesno_btn {
+		margin-left: 28%;
+	}
+	#yes_btn{
+		width: 80px;
+		height: 29px;
+		font-size: 16px;
+		text-align: center;
+		background-color: #fd999a;
+		color: white;
+		display: block;
+		padding-top: 2px; 
+		/* line-height: 61px; */
+		display: inline-block;
+		float: left;
+		margin-left: 10px;
+		border: 1px solid #f8ecc9;
+		border-radius: 30px;
+		
+	}
+	#no_btn {
+		width: 80px;
+		height: 29px;
+		font-size: 16px;
+		text-align: center;
+		background-color: white;
+		color: #fd999a;
+		display: block;
+		padding-top: 2px;
+		/* line-height: 61px; */
+		display: inline-block;
+		float: left;
+		border: 1px solid #fd999a;
+		border-radius: 30px;
+	}
+
+
+
+
+
+
+
+
 
 /* TOP */
 #boardr_to {
@@ -279,7 +378,18 @@
  });
   $(document).on("click","#de_btn", function(){
 	 alert("삭제하시겠습니까?")
-	 location.href="boarddelete.bizpoll?bno=${boardview.bno}";
+	 // 모달창 열기
+	 $("#modal_all").css("display", "block");
+	 
+	 $("#close_btn").click(function(){
+		$("#modal_all").css("display", "none");
+	 });
+	 $("#no_btn").click(function(){
+		$("#modal_all").css("display", "none");
+	 });
+	 $("#yes_btn").click(function(){
+		location.href="boarddelete.bizpoll?bno=${boardview.bno}";
+	 });
   });
 </script>
 <title>게시글</title>
@@ -333,6 +443,16 @@
 		</table>
 		<c:if test="${sessionScope.loginUser.id==boardview.writer}">
 		 <button class="bd_dl_btn" id="de_btn">삭제</button>
+		 <!-- 삭제 모달창 -->
+		 <div id="modal_all">
+		   <div id="modal_in">
+			<div id="modal_up"><span id="draw">게시글삭제</span><span id="close_btn"><i class="fa fa-close"></i></span></div>
+			<div id="modal_text"><h3>다음<span>게시글</span>을 삭제하시겠습니까?</h3></div>
+			<div id="yesno_btn">
+				<div><a href="#" id="no_btn">아니오</a></div><div><a href="#" id="yes_btn">네</a></div>
+			</div>
+		   </div>
+		</div>
 		 <button class="bd_up_btn" id="up_btn">수정</button>
 		</c:if>
 		
