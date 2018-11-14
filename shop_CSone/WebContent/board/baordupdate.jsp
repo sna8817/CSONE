@@ -156,33 +156,6 @@
 </style>
 <script type="text/javascript" src="<%=path%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
-	$(document).on("click",".bd_up_btn", function(elClickedObj){
-		alert("test");
-		var title = $("#title").val();
-		alert(title);
-		
-		// 스마트 에디터로 content부분 값 넘겨받는 부분
-		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD",[]);
-		
-		if(title == "") {
-			alert("제목 안썻음");
-			$("#title").focus();
-			$(".error").css("display","block");
-			return false;
-		}
-		$("#fmt_btn").submit();
-	});
-	
-	$(document).on("blur","#title",function(){
-		var title = $("#title").val();
-		if(title==""){
-			$(".error").css("display","block");
-		} else {
-			$(".error").css("display","none");
-			
-		}
-	});
-	
 	// 전파일 값 넣어놓기
 	$(document).ready(function(){
 		$("#file-name").text("${boardview.filename}");
@@ -199,16 +172,31 @@
 	
 	// 파일이름에 값이 들어올 경우 파일이름을 나타나게 하고, fa아이콘 보이게!
 	$(document).on("change","#uploadfile",function(){
-		var filesize = $(this)[0].files;
+		var filesize = $(this)[0].files; // file들을 첨부할 수 있으니(배열)
 		
 		// 파일 선택시 취소 버튼 누를때 선택된 파일없음으로 뜨는 명령어
 		if(filesize.length <1){
-			$("#file-name").text("선택된 파일 없음");
-			$("#close_btn").css("display","none");
+			$("#file-name").text("선택된 파일 없음");     // 파일이 없기 때문에 선택된 파일없음
+			$("#close_btn").css("display","none");  // 클로즈 버튼 none
 		} else{
+			// 첨부파일이 있다면 첨부파일의 이름과 사이즈를 불러옴!
 			var filename = this.files[0].name;
-			$("#file-name").text(filename);
-			$("#close_btn").css("display","inline-block");
+			var filesize = this.files[0].size;
+			
+			var maxSize = 10*1024*1024;    // 10MB로 용량 제한
+			
+			if(filesize>maxSize){ // 용량 제한 걸림!
+				alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+				$("#file-name").text("선택된 파일 없음");
+				// 화면단에서는 input type="file" 용량 제한하는 코드가 없기 때문에 경고창은 뜨지만 실제로는 10mb넘는 파일이 들어가 있다
+				// 반드시 초기화를 시켜서 지워줄 것!!
+				$("#uploadfile").val("");     // 초기화
+				$("#now-file-size").val(0);   // 초기화
+			} else { // 첨부 가능!!
+				$("#now-file-size").val(filesize);
+				$("#file-name").text(filename);
+				$("#close_btn").css("display","inline-block");
+			}
 		}
 	});
 	
@@ -219,6 +207,44 @@
 		$("#file-name").text("선택된 파일 없음");
 		$("#close_btn").css("display","none");
 	});
+	
+	
+	
+	
+	
+	
+	
+	$(document).on("click",".bd_up_btn", function(elClickedObj){
+		alert("test");
+		var title = $("#title").val();
+		alert(title);
+		
+		// 스마트 에디터로 content부분 값 넘겨받는 부분
+		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD",[]);
+		
+		if(title == "") {
+			alert("제목 안썻음");
+			$("#title").focus();
+			$(".error").css("display","block");
+			return false;
+		}
+		
+		// submit에 파일이름을 넣어줌!
+		var nowfile = $("#file-name").text();
+		$("#now-file-name").val(nowfile);
+		$("#fmt_btn").submit();
+	});
+	
+	$(document).on("blur","#title",function(){
+		var title = $("#title").val();
+		if(title==""){
+			$(".error").css("display","block");
+		} else {
+			$(".error").css("display","none");
+			
+		}
+	});
+	
 	
 	
 	
@@ -262,7 +288,6 @@
 	<div id="table_div">
 		<table id="boardr_table" border="1px solid lightgray">
 		 <thead style="border-right-color: lightgray;">
-		 	<input type="hidden" value="${boardview.bno}" name="bno" readonly="readonly" id="bno">
 		 	<tr class="line">
 		 		<th style="width: 100px">subject</th>
 		 		<th style="width: 900px;text-align: left;"><input type="text" style="width: -webkit-fill-available" id="title" name="title" value="${boardview.title}">
@@ -288,13 +313,16 @@
 			<tr class="line_file">
 				<td>첨부파일</td>
 				<td>
-				<input type="file" name="uploadfile" id="uploadfile" style="display: none" name="now-file-name">
+				<input type="file" name="uploadfile" id="uploadfile" style="display: none">
 				<input type="button" class="btn-file" value="파일 선택">
 				<span class="files" id="file-name" style="height: 29px; border: none;">선택된 파일 없음</span>
 				<i class="fa fa-close" id="close_btn" style="display: none"></i>
 				
-				<input type="hidden" id="post-file-name" name="post-file-name" value="${boardview.filename}">
-				</td>
+				
+		 		<input type="hidden" value="${boardview.bno}" name="bno" readonly="readonly" id="bno">
+				<input type="hidden" id="now-file-name" name="now-file-name">
+				<input type="hidden" id="now-file-size" name="now-file-size">
+ 				</td>
 			</tr>		 	
 		 </tfoot>
 		</table>
