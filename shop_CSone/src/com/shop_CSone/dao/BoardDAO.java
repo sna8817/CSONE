@@ -24,6 +24,7 @@ public class BoardDAO {
 		return instance;
 	}
 	
+	// 게시판 목록 조회
 	public List<BoardDTO> boardListAll(CriteriaDTO criDto){
 		sqlSession = sqlSessionFactory.openSession();
 		List<BoardDTO> list = new ArrayList<>();
@@ -38,7 +39,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	
+	// 게시판 페이지네이션
 	public int totalCount(CriteriaDTO criDto) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
@@ -54,6 +55,7 @@ public class BoardDAO {
 		
 	}
 	
+	// 게시판 찾기(검색)
 	public List<BoardDTO> boardSearch(CriteriaDTO criDto){
 		sqlSession = sqlSessionFactory.openSession();
 		List<BoardDTO> list = new ArrayList<>();
@@ -69,6 +71,7 @@ public class BoardDAO {
 	}
 	
 	
+	// 게시판 View(클릭)
 	public BoardDTO boardDetailView(String bno) {
 		sqlSession = sqlSessionFactory.openSession();
 		BoardDTO bDto = null;
@@ -85,7 +88,7 @@ public class BoardDAO {
 	}
 	
 	
-	
+	// 게시판 조회시 조회수 증가
 	public void viewCnt(String bno, HttpSession countSession) {
 		sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -117,7 +120,7 @@ public class BoardDAO {
 	}
 	
 	
-	
+	// 게시판 insert
 	public int boardInsert(BoardDTO bDto) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
@@ -133,6 +136,8 @@ public class BoardDAO {
 		
 	}
 	
+	
+	// 게시판 수정
 	public int boardUpdate(BoardDTO bDto) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
@@ -149,6 +154,7 @@ public class BoardDAO {
 	}
 	
 	
+	// 게시판 삭제
 	public int boardDelete(int bno) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
@@ -162,4 +168,6 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	
+	
 }

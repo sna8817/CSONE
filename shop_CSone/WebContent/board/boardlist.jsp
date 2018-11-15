@@ -213,7 +213,7 @@
 					<c:if test="${today2==regdate2}">
 						<span class="new_time">NEW</span>
 					</c:if>
-					[${bDto.goodcnt}]
+
 					</a>
 					</th>
 					<th>${bDto.viewcnt}</th>

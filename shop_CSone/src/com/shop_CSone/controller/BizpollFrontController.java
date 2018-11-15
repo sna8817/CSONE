@@ -36,6 +36,8 @@ import com.shop_CSone.action.MemberplayAction;
 import com.shop_CSone.action.PwCheckAction;
 import com.shop_CSone.action.MemberpwPlayAction;
 import com.shop_CSone.action.PwPlayAction;
+import com.shop_CSone.action.ReplyDeleteAction;
+import com.shop_CSone.action.ReplyInsertAction;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
@@ -81,84 +83,90 @@ public class BizpollFrontController extends HttpServlet {
 		System.out.println("페이지이동==============> "+command);
 		
 		// Action단 이동
-		if(command.equals("/index.bizpoll")) {
+		if(command.equals("/index.bizpoll")) { // 메인페이지 이동
 			action = new IndexAction(); // 객체 생성
 			forward = action.excute(request, response); // 객체(인스턴스) 사용
 			// Web에서는 무조건 request, response를 매개변수로 받아야함.
-		} else if(command.equals("/constract.bizpoll")) {
+		} else if(command.equals("/constract.bizpoll")) { // 이용약관 이동
 			action = new ConstractAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/member.bizpoll")) {
+		} else if(command.equals("/member.bizpoll")) { // 회원가입 페이지 이동
 			action =  new MemberAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberplay.bizpoll")) {
+		} else if(command.equals("/memberplay.bizpoll")) { // 회원가입 -> 실행
 			action = new MemberplayAction(); // 객체 생성
 			forward = action.excute(request, response); // 함수 실행!
-		} else if(command.equals("/login.bizpoll")) {
+		} else if(command.equals("/login.bizpoll")) { // 로그인 페이지 이동
 			action = new LoginAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/LoginPlay.bizpoll")) {
+		} else if(command.equals("/LoginPlay.bizpoll")) { //로그인 기능
 			action = new LoginPlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/loginOut.bizpoll")) {
+		} else if(command.equals("/loginOut.bizpoll")) { // 로그아웃 기능
 			action = new LoginOutPlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberUpdate.bizpoll")) {
+		} else if(command.equals("/memberUpdate.bizpoll")) { // 회원수정 페이지 이동
 			action = new MemberUpdateAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberupdateplay.bizpoll")) {
+		} else if(command.equals("/memberupdateplay.bizpoll")) { // 회원 수정 ->실행
 			action = new MemberUpdatePlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/idCheck.bizpoll")){
+		} else if(command.equals("/idCheck.bizpoll")){ // 아이디 확인
 			action = new IdCheckAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/pwCheck.bizpoll")) {
+		} else if(command.equals("/pwCheck.bizpoll")) { // 비밀번호 확인
 			action = new PwCheckAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberpwplay.bizpoll")) {
+		} else if(command.equals("/memberpwplay.bizpoll")) { // 비밀번호 변경->실행
 			action = new MemberpwPlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/pwUpdate.bizpoll")) {
+		} else if(command.equals("/pwUpdate.bizpoll")) { // 비밀번호 변경 페이지 이동
 			action = new PwPlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberdraw.bizpoll")) {
+		} else if(command.equals("/memberdraw.bizpoll")) { // 회원 탈퇴 이동
 			action = new MemberDrawAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/memberdeleteplay.bizpoll")) {
+		} else if(command.equals("/memberdeleteplay.bizpoll")) { // 회원 탈퇴 -> 실행
 			action = new MemberDeletePlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardList.bizpoll")) {
+		} else if(command.equals("/boardList.bizpoll")) { // 게시판의 게시글 목록 조회 + 검색기능 + 페이지네이션
 			action = new BoardListAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardSearch.bizpoll")) {
+		} else if(command.equals("/boardSearch.bizpoll")) { // 게시글 검색기능 << boardList에 합쳤다(필요없음)
 			action = new BoardSearchAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardDetail.bizpoll")) {
+		} else if(command.equals("/boardDetail.bizpoll")) { // 상세 게시글
 			action = new BoardDetailAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardViewcnt.bizpoll")) {
+		} else if(command.equals("/boardViewcnt.bizpoll")) { // 조회수
 			action = new BoardViewcntAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardinsert.bizpoll")) {
+		} else if(command.equals("/boardinsert.bizpoll")) { // 게시글 등록 페이지 이동
 			action = new BoardInsertAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardInsertPlay.bizpoll")) {
+		} else if(command.equals("/boardInsertPlay.bizpoll")) { // 게시글 등록 ->실행
 			action = new BoardInsertPlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/download.bizpoll")) {
+		} else if(command.equals("/download.bizpoll")) { // 파일 다운로드 기능
 			action = new BoardDownloadAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardupdate.bizpoll")) { // boardupdate로 가는 경로
+		} else if(command.equals("/boardupdate.bizpoll")) { // 게시글 수정 페이지 이동
 			action = new BoardUpdateAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boarddelete.bizpoll")) { // boarddelete로 가는 경로
+		} else if(command.equals("/boarddelete.bizpoll")) { // 게시글 삭제 
 			action = new BoardDeleteAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/boardUpdatePlay.bizpoll")) { // boardupdate DB연동->실행
+		} else if(command.equals("/boardUpdatePlay.bizpoll")) { // 게시글 수정 DB연동->실행
 			action = new BoardUpdatePlayAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/commentlist.bizpoll")) {
+		} else if(command.equals("/commentlist.bizpoll")) { // 댓글 목록 조회
 			action = new CommentListAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/replyDelete.bizpoll")) { // 댓글 삭제
+			action = new ReplyDeleteAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/replyinsert.bizpoll")) { // 댓글 입력
+			action = new ReplyInsertAction();
 			forward = action.excute(request, response);
 		}
  

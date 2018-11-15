@@ -19,7 +19,7 @@ public class ReplyDAO {
 		return instance;
 	}
 	
-	
+	// 댓글 목록 조회
 	public List<ReplyDTO> replyListALL(String bno){
 		List<ReplyDTO> list = null;
 		sqlSession = sqlSessionFactory.openSession();
@@ -31,5 +31,36 @@ public class ReplyDAO {
 			sqlSession.close();
 		}
 		return list;
+	}
+	
+	
+	// 댓글 입력
+	public int replyInsert(ReplyDTO rDto) {
+		sqlSession =  sqlSessionFactory.openSession();
+		int result=0;
+		try {
+			result = sqlSession.insert("replyInsert", rDto);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+	
+	// 댓글 삭제
+	public int replyDelete(String rno) {
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			result = sqlSession.delete("replyDelete",rno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
 	}
 }

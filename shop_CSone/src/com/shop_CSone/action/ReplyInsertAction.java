@@ -1,30 +1,24 @@
 package com.shop_CSone.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop_CSone.dao.BoardDAO;
-import com.shop_CSone.dto.BoardDTO;
 
-public class BoardDetailAction implements Action{
+public class ReplyInsertAction implements Action{
 
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url="board/boardreply.jsp";
+		String url="";
 		
-		String bno = request.getParameter("bno");
-		System.out.println("===========>>"+bno);
-		
-		
-		BoardDAO bDao= BoardDAO.getInstance();
-		BoardDTO bDto = bDao.boardDetailView(bno);
-		
-		request.setAttribute("boardview", bDto);
-		
+		String writer = request.getParameter("reply_writer");
+		String content = request.getParameter("reply_text");
+		System.out.println(writer+", "+content);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath(url);

@@ -227,7 +227,7 @@
 }
 #boardr_bt {
 	margin: 0 auto;
-	padding: 50px 30px;
+	padding: 10px 30px;
 	text-align: center;
 	border: 1px solid red;
 	max-width: 1000px;
@@ -344,6 +344,7 @@
 	margin: 0;
 }
 #user_name {
+	margin: 0;
 	text-align: left;
 }
 #user_login > input {
@@ -381,7 +382,12 @@
 	font-size: 14px;
 	text-align: left;
 }
-
+#reply_writer {
+	font-size: 16px;
+	font-weight: bold;
+	color: #F7AA97;
+	border: 0;
+}
 </style>
 <script type="text/javascript">
 
@@ -401,8 +407,6 @@
 	 });
  }
  
- 
- // 삭제
  
  
  
@@ -427,8 +431,43 @@
   });
   
   
-  
+  $(document).on("click","#reply_btn",function(){
+	 alert("입력");
+	 var text = $("#reply_text").val();
+	 if(text != ""){
+	 	alert(text);
+	 	$("#reply_fmt").submit();
+	 } else {
+		 alert("입력하셔야 등록이 됩니다.");
+	 }
+  });
 
+  // 댓글 삭제
+  $(document).on("click",".delete",function(){
+	 var rno = $(this).attr("data_num");
+	 
+	 $.ajax({
+			type: "post",
+			url: "replyDelete.bizpoll",
+			data: "rno="+rno,
+			success: function(result){
+				comment_list();
+			},
+			error:function(){
+				alert("SYSTEM ERROR!!")
+			}
+	 });
+	 
+  });
+  
+  $(document).on("click",".update",function(){
+	 alert("수정!"); 
+	 var bno = $(this).attr("data_bno");
+	 var rno = $(this).attr("data_num");
+	 alert("ㅠㅜㅠㅜㅠㅜ"+bno+"^^^^^^^^^^^"+rno);
+	 
+	
+  });
 </script>
 <title>게시글</title>
 </head>
@@ -548,11 +587,13 @@
 		 <c:otherwise>
 			<div id="reply_write">
 			<!-- 로그인시 -->
+			<form action="replyinsert.bizpoll" method="post" id="reply_fmt" name="reply_fmt">
 			<div id="user_login">
-				<div id="user_name">${sessionScope.loginUser.name}</div>
-				<input type="text" placeholder="댓글을 입력하세요. 비방, 욕설등은 허용하지 않습니다. ">
-				<button>댓글 등록</button>
+				<div id="user_name"><input value="${sessionScope.loginUser.id}" id="reply_writer" name="reply_writer" readonly="readonly"></div>
+				<input type="text" placeholder="댓글을 입력하세요. 비방, 욕설등은 허용하지 않습니다. " name="reply_text" id="reply_text">
+				<button id="reply_btn">댓글 등록</button>
 			</div>
+			</form>
 			</div>
 		 </c:otherwise>			
 		</c:choose>

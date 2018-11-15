@@ -210,4 +210,14 @@
 		ORDER BY rno ASC
 	</select>
 	
+	<insert id="replyInsert" parameterType="com.shop_CSone.dto.ReplyDTO">
+		INSERT INTO CSBoardreply(rno, content, writer, bno)
+		VALUES(#{rno},#{content},#{writer},#{bno})
+	</insert>
+	
+	
+	<delete id="replyDelete" parameterType="String">
+		DELETE FROM CSBoardreply
+		WHERE rno = #{rno}
+	</delete>
 </mapper>

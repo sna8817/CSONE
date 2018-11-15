@@ -149,12 +149,8 @@
 
 </style>
 <script type="text/javascript">
- $(document).ready(function(){
-	$(".delete").click(function(){
-		var delOne = $(this).val();
-		alert("삭제!"+delOne);
-	});
- });
+
+ 
 </script>
 <title>Insert title here</title>
 </head>
@@ -184,8 +180,8 @@
 						<c:otherwise>
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${replyview.regdate}"/>
 						</c:otherwise>
-					</c:choose>	</span><c:if test="${sessionScope.loginUser.id==replyview.writer}"><button class="update" value="${replyview.rno}">수정</button><button class="delete" value="${replyview.rno}">삭제</button></c:if></p>
-					<input type="text" readonly="readonly" value="${replyview.content}">
+					</c:choose>	</span><c:if test="${sessionScope.loginUser.id==replyview.writer}"><button class="update" data_bno ="${replyview.bno}"" data_num="${replyview.rno}">수정</button><button class="delete" data_num="${replyview.rno}">삭제</button></c:if></p>
+					<textarea rows="" cols="" style="resize: none;width: 800px;height: 50px" readonly="readonly">${replyview.content}</textarea>
 					</div>
 				</div>
 				</c:forEach>
