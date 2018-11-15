@@ -222,7 +222,7 @@
 
 
 /* BOTTOM */
-#bt_all {
+.bt_all {
 	padding: 0 30px;
 }
 #boardr_bt {
@@ -234,21 +234,31 @@
 }
 
 /* reply */
-#reply_RD{
-	padding: 0 auto;
-	margin: 0 auto;
+.reply_no{
+	width: 800px;
+    margin: 0 30px;
+}
+#no_input{
+	width: 800px;
+	height: 50px;
+	border: 1px solid burlywood;
+    background-color: bisque;
+    border-radius: 5px;
+}
+.reply_RD{
+	margin: 0 30px;
  	float: left;
  	display: inline-block;
 }
-#reply_on {
+.reply_on {
 	text-align: center;
 }
-#replyYes {
+.replyYes {
 	border: 1px solid;
     width: -webkit-fill-available;
     text-align: center;
 }
-#replyYes > p {
+.replyYes > p {
 	font-size: 15px;
 	float: left;
 }
@@ -272,17 +282,19 @@
 	background-color: #5eb69d;
     border-color: #55b298;
 } */
-#RD_one {
-	padding: 20px 30px;
+.RD_one {
+	padding: 10px 30px;
 	margin: 0;
 	float: left;
 	display: inline-block;
 	text-align: center;
 	border: 1px solid red;
 }
-#RD_one > p {
+.RD_one > p {
 	text-align: left;
 	font-size: 15px;
+	height: 20px;
+    margin: 0;
 }
 .sp_cl {
 	color: #56CC9D; 
@@ -297,30 +309,30 @@
 	color: #F3969A;
 	text-decoration: none;
 }
-#RD_one > input {
+.RD_one > input {
 	width: 800px;
-	height: 70px;
+	height: 50px;
 	display: inline-block;
 	float: right;
 }
-#RD_one >p > button {
+.RD_one >p > button {
 	width: 50px;
 	height: 30px;
 	border: 1px solid black;
 	float: right;
 }
-#RD_one >p> button:nth-child(3){
+.RD_one >p> button:nth-child(3){
 	background-color: #ffc241;
     border-color: #ffbe34;
 }
-#RD_one >p> button:nth-child(4){
+.RD_one >p> button:nth-child(4){
 	background-color: #FF7851;
     border-color: #FF7851;
 }
 
 /* reply입력 */
 #reply_write{
-	margin: 0 auto;
+	margin: 0 60px;
 	padding: 20px 30px;
 	text-align: center;
 	border: 1px solid red;
@@ -352,7 +364,7 @@
 
 /* 로그인 NO */
 #no_login {
-	margin: 0 auto;
+	margin: 0 60px;
 	padding: 20px 30px;
 	text-align: center;
 	border: 1px solid red;
@@ -372,6 +384,28 @@
 
 </style>
 <script type="text/javascript">
+
+ $(document).ready(function(){
+	 // 문서가 준비 되면 댓글 목록을 조회하는 AJAX 실행
+	 comment_list();
+ });
+ 
+ function comment_list(){
+	 $.ajax({
+		type: "post",
+		url: "commentlist.bizpoll",
+		data: "bno=${boardview.bno}",
+		success: function(result){ // ajax로 include함(페이지 삽입)
+			$("#commentList").html(result);
+		}
+	 });
+ }
+ 
+ 
+ // 삭제
+ 
+ 
+ 
  $(document).on("click","#up_btn", function(){
 	alert("test");
 	location.href="boardupdate.bizpoll?bno=${boardview.bno}";
@@ -391,6 +425,10 @@
 		location.href="boarddelete.bizpoll?bno=${boardview.bno}";
 	 });
   });
+  
+  
+  
+
 </script>
 <title>게시글</title>
 </head>
@@ -465,18 +503,41 @@
 	<!-- 댓글 -->
 	<!-- 댓글달기 -->
 	<div id="boardr_bt">
-		<div id="bt_all">
-		<div id="reply_all"> 
+		<div id="commentList">
+		</div>
+		<%-- commentlist.jsp로 갈 것!
+		<div class="bt_all">
+		<div class="reply_all"> 
 			<!-- 댓글이 있을때 -->
 
-			<div id="reply_RD">
-				<div id="reply_on"><div id="replyYes"><p>댓글<span class="line"> | </span><span class="Num_cl">1</span></p><!-- <div id="replyYes_btn"><button>목록</button><button>쓰기</button></div> --></div>
-					<div id="RD_one"><p>둥둥이<span class="line"> | </span><span class="sp_cl">2018-11-07</span><button>수정</button><button>삭제</button></p>
-					<input type="text" readonly="readonly" placeholder="ㅋㅋㅋㅋ">
+			<div class="reply_RD">
+				<c:if test="${replyList.size()==0}">
+					<div class="reply_no">
+					<input type="text" readonly="readonly" placeholder="등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요" id="no_input">
+					</div>
+				</c:if>
+				<div><p>댓글<span class="line"> | </span><span class="Num_cl">${replyList.size()}</span></p></div>
+				<c:forEach items="${replyList}" var="replyview">
+				<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today2"/>
+				<fmt:formatDate value="${replyview.regdate}" pattern="yyyy-MM-dd" var="regdate2"/>
+				<div class="reply_on"><div class="replyYes"><p>댓글<span class="line"> | </span><span class="Num_cl">${replyview.rno}</span></p><!-- <div id="replyYes_btn"><button>목록</button><button>쓰기</button></div> --></div>
+					<div class="RD_one"><p>${replyview.writer}<span class="line"> | </span><span class="sp_cl"><c:choose>
+						<c:when test="${today2 == regdate2}">
+							<fmt:formatDate pattern="HH:mm:ss" value="${replyview.regdate}"/>
+						</c:when>
+						<c:otherwise>
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${replyview.regdate}"/>
+						</c:otherwise>
+					</c:choose>	</span><c:if test="${sessionScope.loginUser.id==replyview.writer}"><button>수정</button><button>삭제</button></c:if></p>
+					<input type="text" readonly="readonly" value="${replyview.content}">
 					</div>
 				</div>
+				</c:forEach>
+				</div>
 			</div>
-		</div>	
+		</div>
+		--%>
+		
 		<c:choose>
 		 <c:when test="${empty sessionScope.loginUser}">
 			<!-- 로그인 NO -->
@@ -496,7 +557,6 @@
 		 </c:otherwise>			
 		</c:choose>
 		</div>
-	</div>
 	
 	
 </body>

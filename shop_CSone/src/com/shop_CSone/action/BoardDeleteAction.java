@@ -21,6 +21,8 @@ public class BoardDeleteAction implements Action{
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardDTO bDto = new BoardDTO(bno);
+		
+		// 게시글 삭제
 		int result = bDao.boardDelete(bno);
 	
 		System.out.println("바뀐거@@@@@@@@@@@"+bDto.toString());

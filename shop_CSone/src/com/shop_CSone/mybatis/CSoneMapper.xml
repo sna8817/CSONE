@@ -199,4 +199,15 @@
 		WHERE bno=#{bno}
 	</delete>
 	
+	
+	
+	
+	<!-- ===================================================================================================================== -->
+	<!-- ReplyDAO -->
+	<select id="replyListAll" parameterType="String" resultType="com.shop_CSone.dto.ReplyDTO">
+		SELECT * FROM CSBoardreply
+		WHERE bno = #{bno}
+		ORDER BY rno ASC
+	</select>
+	
 </mapper>

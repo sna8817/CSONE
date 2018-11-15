@@ -8,26 +8,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop_CSone.dao.BoardDAO;
 import com.shop_CSone.dao.ReplyDAO;
-import com.shop_CSone.dto.BoardDTO;
 import com.shop_CSone.dto.ReplyDTO;
 
-public class BoardDetailAction implements Action{
+public class CommentListAction implements Action{
 
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url="board/boardreply.jsp";
+		String url="board/commentlist.jsp";
 		
 		String bno = request.getParameter("bno");
-		System.out.println("===========>>"+bno);
 		
 		
-		BoardDAO bDao= BoardDAO.getInstance();
-		BoardDTO bDto = bDao.boardDetailView(bno);
+
+		ReplyDAO rDao = ReplyDAO.getInstance();
+		List<ReplyDTO> replyList = rDao.replyListALL(bno);
+		request.setAttribute("replyList", replyList);
 		
-		request.setAttribute("boardview", bDto);
+		// 현재날짜 출력
+		Date today = new Date();
+		request.setAttribute("today", today);
 		
 		
 		ActionForward forward = new ActionForward();

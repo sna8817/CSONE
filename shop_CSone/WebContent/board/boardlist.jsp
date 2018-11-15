@@ -192,7 +192,7 @@
 					<th style="width: 50px">no</th>
 					<th style="width: 80px">Category</th>
 					<th style="width: 300px" class="subject">subject</th>
-					<th style="width: 40px">like</th>
+					<th style="width: 40px">View</th>
 					<th style="width: 80px">Writer</th>
 					<th style="width: 100px">Date</th>
 					<th style="width: 40px">file</th>
@@ -213,10 +213,10 @@
 					<c:if test="${today2==regdate2}">
 						<span class="new_time">NEW</span>
 					</c:if>
-					[${bDto.viewcnt}]
+					[${bDto.goodcnt}]
 					</a>
 					</th>
-					<th>${bDto.goodcnt}</th>
+					<th>${bDto.viewcnt}</th>
 					<th>${bDto.writer}</th>
 					<th>
 					<!-- 날짜 포맷팅 -->

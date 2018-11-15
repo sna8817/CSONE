@@ -20,6 +20,7 @@ import com.shop_CSone.action.BoardSearchAction;
 import com.shop_CSone.action.BoardUpdateAction;
 import com.shop_CSone.action.BoardUpdatePlayAction;
 import com.shop_CSone.action.BoardViewcntAction;
+import com.shop_CSone.action.CommentListAction;
 import com.shop_CSone.action.ConstractAction;
 import com.shop_CSone.action.IdCheckAction;
 import com.shop_CSone.action.IndexAction;
@@ -156,7 +157,10 @@ public class BizpollFrontController extends HttpServlet {
 		} else if(command.equals("/boardUpdatePlay.bizpoll")) { // boardupdate DB연동->실행
 			action = new BoardUpdatePlayAction();
 			forward = action.excute(request, response);
-		} 
+		} else if(command.equals("/commentlist.bizpoll")) {
+			action = new CommentListAction();
+			forward = action.excute(request, response);
+		}
  
 
 

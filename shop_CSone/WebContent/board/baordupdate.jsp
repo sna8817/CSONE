@@ -212,8 +212,6 @@
 	
 	
 	
-	
-	
 	$(document).on("click",".bd_up_btn", function(elClickedObj){
 		alert("test");
 		var title = $("#title").val();
