@@ -30,6 +30,15 @@ public class BoardListAction implements Action{
 		criDto.setPage(page);
 
 		
+		// 정렬을 위한 코드
+		String code="new";
+		if(request.getParameter("key") != null) {
+			code = request.getParameter("key");
+		}
+		criDto.setCode(code);
+		request.setAttribute("code", code);
+		
+		
 		String flag=null;
 		String keyword = null;
 		if(request.getParameter("keyword") != null) {

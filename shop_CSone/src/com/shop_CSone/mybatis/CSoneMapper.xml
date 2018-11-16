@@ -134,8 +134,19 @@
                        <![CDATA[AND title LIKE '%'||#{keyword}||'%' OR content LIKE '%'||#{keyword}||'%']]>
 					   </if>
                        
-    <![CDATA[                   
-                       ORDER BY bno DESC
+						<if test='code == "new"'>
+							ORDER BY bno DESC
+						</if>
+						<if test='code=="good"'>
+							ORDER BY goodcnt DESC, bno DESC
+						</if>
+						<if test='code=="reply"'>
+							ORDER BY replycnt DESC, bno DESC
+						</if>
+						<if test='code=="cnt"'>
+							ORDER BY viewcnt DESC, bno DESC
+						</if>
+    <![CDATA[
                        ) a
                 )
 			WHERE rnum BETWEEN #{pageStart} AND #{perPageNum}

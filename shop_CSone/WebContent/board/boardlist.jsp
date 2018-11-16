@@ -179,10 +179,11 @@
 	<article id="BTwrap">
 		<div id="BT_top">
 			<h3>Q&A</h3>
-				<span><strong><a href="#">최신순</a></strong></span>&nbsp;<span class="bar">|</span>
-				<span><a href="#">추천순</a></span>&nbsp;<span class="bar">|</span>
-				<span><a href="#">조회순</a></span>&nbsp;<span class="bar">|</span>
-				<span><a href="#">댓글순</a></span>&nbsp;
+				<input type="hidden" value="${code}" id="code">
+				<span><strong><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=new" id="orderNew">최신순</a></strong></span>&nbsp;<span class="bar">|</span>
+				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=good" id="orderGood">추천순</a></span>&nbsp;<span class="bar">|</span>
+				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=reply" id="orderReply">댓글순</a></span>&nbsp;<span class="bar">|</span>
+				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=cnt" id="orderCnt">조회순</a></span>&nbsp;
 				<div id="write"><span><strong><a href="boardinsert.bizpoll">글쓰기</a></strong></span></div>&nbsp;
 				<div class="clr_both"></div>
 		</div>
@@ -253,12 +254,12 @@
 			<c:forEach begin="${pageMaker.startPage}"
 			  end="${pageMaker.endPage}" var="idx">
 			  	<a <c:out value="${pageMaker.criDto.page == idx? 'class=active':''}"/>
-			  		href="boardList.bizpoll?page=${idx}&flag=${flag}&keyword=${keyword}" class="pagent">${idx}</a>
+			  		href="boardList.bizpoll?page=${idx}&flag=${flag}&keyword=${keyword}&key=${code}" class="pagent">${idx}</a>
 			</c:forEach>
 			
 			<c:if test="${pageMaker.next}">
 				<span class="pagent" id="nohover">...</span>
-				<a href="boardList.bizpoll?page=${pageMaker.finalPage}" class="pagent">${pageMaker.finalPage}</a>
+				<a href="boardList.bizpoll?page=${pageMaker.finalPage+1}" class="pagent">${pageMaker.finalPage+1}</a>
 				<a href="boardList.bizpoll?page=${pageMaker.endPage+1}" class="pagent">&raquo;</a>
 			</c:if>
 		</div>
