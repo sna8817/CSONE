@@ -63,4 +63,19 @@ public class ReplyDAO {
 		}
 		return result;
 	}
+	
+	// 게시글 삭제시 댓글 모두 삭제
+	public int replyDeleteAll(String bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			result = sqlSession.delete("replyDeleteAll",bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
 }

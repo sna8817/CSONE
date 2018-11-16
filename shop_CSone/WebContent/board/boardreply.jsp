@@ -246,7 +246,7 @@
     border-radius: 5px;
 }
 .reply_RD{
-	margin: 0 30px;
+	margin: 0;
  	float: left;
  	display: inline-block;
 }
@@ -321,11 +321,8 @@
 	border: 1px solid black;
 	float: right;
 }
-.RD_one >p> button:nth-child(3){
-	background-color: #ffc241;
-    border-color: #ffbe34;
-}
-.RD_one >p> button:nth-child(4){
+
+.RD_one >p> button{
 	background-color: #FF7851;
     border-color: #FF7851;
 }
@@ -388,6 +385,116 @@
 	color: #F7AA97;
 	border: 0;
 }
+#err_content {
+	font-size: 11px;
+	color: red;
+	float: left;
+	display: none;
+}
+
+
+
+
+
+	/* reply 삭제 modal 창 */
+	#modal_all_redel {
+		z-index: 10000;
+		position: fixed;
+		top:0px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background: rgba(0,0,0,0.4);
+		padding-top: 100px;
+		display: none;
+		
+	}
+	#modal_in_redel {
+		border: 2px solid #a79c8e;
+		border-radius: 15px;
+		text-align: center;
+		width: 400px;
+		height: 150px;
+		background-color: #f2e9e1;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -150px;
+		margin-left: -200px;
+	}
+	#modal_up_redel {
+		font-size: 16px;
+		text-align: left;
+		color: white;
+		background-color: #f9cdad;
+		border-radius: 14px 14px 0 0;
+	}
+	#draw_redel {
+		padding: 0 10px;
+	}
+	
+	#close_btn_redel {
+		padding: 0 10px;
+		float: right;
+		color: white;
+	}
+	
+	h3 > span {
+		color: #fd999a;
+		font-weight: bold; 
+	}
+	#modal_text_redel {
+		margin: 15px auto;
+		padding: 0 auto;
+	}
+	#modal_tex_redelt > h3 {
+		margin-top: 30px;
+	}
+	#yesno_btn_redel {
+		margin-left: 28%;
+	}
+	#yes_btn_redel{
+		width: 80px;
+		height: 29px;
+		font-size: 16px;
+		text-align: center;
+		background-color: #fd999a;
+		color: white;
+		display: block;
+		padding-top: 2px; 
+		/* line-height: 61px; */
+		display: inline-block;
+		float: left;
+		margin-left: 10px;
+		border: 1px solid #f8ecc9;
+		border-radius: 30px;
+		
+	}
+	#no_btn_redel {
+		width: 80px;
+		height: 29px;
+		font-size: 16px;
+		text-align: center;
+		background-color: white;
+		color: #fd999a;
+		display: block;
+		padding-top: 2px;
+		/* line-height: 61px; */
+		display: inline-block;
+		float: left;
+		border: 1px solid #fd999a;
+		border-radius: 30px;
+	}
+
+
+
+
+
+
+
+
+
 </style>
 <script type="text/javascript">
 
@@ -408,12 +515,13 @@
  }
  
  
- 
- 
  $(document).on("click","#up_btn", function(){
 	alert("test");
 	location.href="boardupdate.bizpoll?bno=${boardview.bno}";
  });
+ 
+ 
+ 
   $(document).on("click","#de_btn", function(){
 	 alert("삭제하시겠습니까?")
 	 // 모달창 열기
@@ -431,23 +539,59 @@
   });
   
   
+  
+  // 댓글 입력
   $(document).on("click","#reply_btn",function(){
 	 alert("입력");
-	 var text = $("#reply_text").val();
-	 if(text != ""){
-	 	alert(text);
-	 	$("#reply_fmt").submit();
+	 var content = $("#reply_text").val();
+	 
+	 if(content == ""){
+		$("#reply_text").focus();
+		$("#err_content").css("display","block");
+		alert("입력하셔야 등록이 됩니다.");
+	 	return false;
 	 } else {
-		 alert("입력하셔야 등록이 됩니다.");
+		var bno = ${boardview.bno};
+	 	$("#re_bno").val(bno);
+		alert(content+", "+bno);
 	 }
+	 // form태그로 데이터 보내기! -> serialize() + contentType
+	 //                     form 태그 직렬화!!
+	 $.ajax({
+			url: "replyinsert.bizpoll",
+			data: $("#reply_fmt").serialize(),
+			contentType: 'application/x-www-form-urlencode; charset=UTF-8',
+			success: function(result){
+				comment_list();
+				$("#reply_text").val("");
+			},
+			error:function(){
+				alert("SYSTEM ERROR!!")
+			}
+	 });
+	 
+	 
+	 
   });
 
   // 댓글 삭제
   $(document).on("click",".delete",function(){
+	 alert("삭제하시겠습니까?")
 	 var rno = $(this).attr("data_num");
+	 var bno=${boardview.bno};
+	 // 모달창 열기
+	 $("#modal_all_redel").css("display", "block");
 	 
-	 $.ajax({
-			type: "post",
+	 $("#close_btn_redel").click(function(){
+		 $("#modal_all_redel").css("display", "none");
+	 });
+	 $("#no_btn_redel").click(function(){
+		$("#modal_all_redel").css("display", "none");
+	 });
+	
+	 $("#yes_btn_redel").click(function(){
+	 
+		 $.ajax({
 			url: "replyDelete.bizpoll",
 			data: "rno="+rno,
 			success: function(result){
@@ -456,18 +600,12 @@
 			error:function(){
 				alert("SYSTEM ERROR!!")
 			}
-	 });
-	 
+	 	});
+		 
+	 }); 
+	  
   });
   
-  $(document).on("click",".update",function(){
-	 alert("수정!"); 
-	 var bno = $(this).attr("data_bno");
-	 var rno = $(this).attr("data_num");
-	 alert("ㅠㅜㅠㅜㅠㅜ"+bno+"^^^^^^^^^^^"+rno);
-	 
-	
-  });
 </script>
 <title>게시글</title>
 </head>
@@ -577,6 +715,7 @@
 		</div>
 		--%>
 		
+		<%-- 
 		<c:choose>
 		 <c:when test="${empty sessionScope.loginUser}">
 			<!-- 로그인 NO -->
@@ -596,7 +735,8 @@
 			</form>
 			</div>
 		 </c:otherwise>			
-		</c:choose>
+		</c:choose> 
+		--%>
 		</div>
 	
 	

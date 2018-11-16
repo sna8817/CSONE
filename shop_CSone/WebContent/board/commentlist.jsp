@@ -6,145 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-/* BOTTOM */
-.bt_all {
-	padding: 0 30px;
-}
-#boardr_bt {
-	margin: 0 auto;
-	padding: 50px 30px;
-	text-align: center;
-	border: 1px solid red;
-	max-width: 1000px;
-}
-
-/* reply */
-.reply_no{
-	width: 800px;
-    margin: 0 30px;
-}
-#no_input{
-	width: 800px;
-	height: 50px;
-	border: 1px solid burlywood;
-    background-color: bisque;
-    border-radius: 5px;
-}
-.reply_RD{
-	margin: 0;
- 	float: left;
- 	display: inline-block;
-}
-.reply_on {
-	text-align: center;
-}
-.replyYes {
-	border: 1px solid;
-    width: -webkit-fill-available;
-    text-align: center;
-}
-.replyYes > p {
-	font-size: 15px;
-	float: left;
-}
-.Num_cl {
-	font-size: 15px;
-	color: #6CC3D5;
-}
-/* #replyYes_btn > button{
-	margin: 0 auto;
-	width: 50px;
-	height: 30px;
-	border: 1px solid black;
-	float: right;
-	
-}
-#replyYes_btn > button:nth-child(1){
-	background-color: #6CC3D5;
-    border-color: #6CC3D5;
-}
-#replyYes_btn > button:nth-child(2){
-	background-color: #5eb69d;
-    border-color: #55b298;
-} */
-.RD_one {
-	padding: 10px 30px;
-	margin: 0;
-	float: left;
-	display: inline-block;
-	text-align: center;
-	border: 1px solid red;
-}
-.RD_one > p {
-	text-align: left;
-	font-size: 15px;
-	height: 20px;
-    margin: 0;
-}
-.sp_cl {
-	color: #56CC9D; 
-	font-size: 12px;
-}
-.line{
-	color: #F3969A;
-	text-align: center;
-    font-weight: bold;
-}
-.file_a> a {
-	color: #F3969A;
-	text-decoration: none;
-}
-.RD_one > input {
-	width: 800px;
-	height: 50px;
-	display: inline-block;
-	float: right;
-}
-.RD_one >p > button {
-	width: 50px;
-	height: 30px;
-	border: 1px solid black;
-	float: right;
-}
-.RD_one >p> button:nth-child(3){
-	background-color: #ffc241;
-    border-color: #ffbe34;
-}
-.RD_one >p> button:nth-child(4){
-	background-color: #FF7851;
-    border-color: #FF7851;
-}
-
-/* reply입력 */
-#reply_write{
-	margin: 0 60px;
-	padding: 20px 30px;
-	text-align: center;
-	border: 1px solid red;
-	max-width: 1000px;
-	float: left;
-}
-#user_login {
-	padding: 0;
-	margin: 0;
-}
-#user_name {
-	text-align: left;
-}
-#user_login > input {
-	width: 700px;
-	height: 100px;
-	display: inline-block;
-	float: left;
-}
-#user_login > button {
-	width: 100px;
-	height: 100px;
-	border: 1px solid #F7AA97;
-	background-color: #F7AA97;
-	display: inline-block;
-	float: right;
-}
 
 
 </style>
@@ -168,6 +29,7 @@
 					<input type="text" readonly="readonly" placeholder="등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요" id="no_input">
 					</div>
 				</c:if>
+				<!-- 수정 -->
 				<div><p>댓글<span class="line"> | </span><span class="Num_cl">${replyList.size()}</span></p></div>
 				<c:forEach items="${replyList}" var="replyview">
 				<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today2"/>
@@ -180,7 +42,19 @@
 						<c:otherwise>
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${replyview.regdate}"/>
 						</c:otherwise>
-					</c:choose>	</span><c:if test="${sessionScope.loginUser.id==replyview.writer}"><button class="update" data_bno ="${replyview.bno}"" data_num="${replyview.rno}">수정</button><button class="delete" data_num="${replyview.rno}">삭제</button></c:if></p>
+					</c:choose>	</span><c:if test="${sessionScope.loginUser.id==replyview.writer}"><%-- <button class="update" data_rno="${replyview.rno}">수정</button> --%><button class="delete" data_num="${replyview.rno}">삭제</button>
+					<!-- 삭제 모달창 -->
+					<div id="modal_all_redel">
+		  			 <div id="modal_in_redel">
+						<div id="modal_up_redel"><span id="draw_redel">게시글삭제</span><span id="close_btn_redel"><i class="fa fa-close"></i></span></div>
+						<div id="modal_text_redel"><h3>다음<span>댓글</span>을 삭제하시겠습니까?</h3></div>
+						<div id="yesno_btn_redel">
+					<div><a href="#" id="no_btn_redel">아니오</a></div><div><a href="#" id="yes_btn_redel">네</a></div>
+					</div>
+		   			</div>
+					</div>
+					
+					</c:if></p>
 					<textarea rows="" cols="" style="resize: none;width: 800px;height: 50px" readonly="readonly">${replyview.content}</textarea>
 					</div>
 				</div>
@@ -190,6 +64,27 @@
 		</div>	
 		</div>
 	
-	
+	<c:choose>
+		 <c:when test="${empty sessionScope.loginUser}">
+			<!-- 로그인 NO -->
+			<div id="no_login">
+				<div id="NOOO"><span>회원에게만 댓글작성의 권한이 있습니다.</span></div>
+			</div>
+		 </c:when>
+		 <c:otherwise>
+			<div id="reply_write">
+			<!-- 로그인시 -->
+			<form action="" method="post" id="reply_fmt" name="reply_fmt">
+			<div id="user_login">
+				<div id="user_name"><input value="${sessionScope.loginUser.id}" id="reply_writer" name="reply_writer" readonly="readonly"></div>
+				<input type="text" placeholder="댓글을 입력하세요. 비방, 욕설등은 허용하지 않습니다. " name="reply_text" id="reply_text">
+				<button id="reply_btn">댓글 등록</button>
+			</div>
+				<span id=err_content>내용을 입력해주세요.</span>
+				<input type="hidden" name="re_bno" id="re_bno">
+			</form>
+			</div>
+		 </c:otherwise>			
+		</c:choose>	
 </body>
 </html>

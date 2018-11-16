@@ -8,24 +8,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop_CSone.dao.BoardDAO;
+import com.shop_CSone.dao.ReplyDAO;
+import com.shop_CSone.dto.ReplyDTO;
 
 public class ReplyInsertAction implements Action{
 
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url="";
 		
 		String writer = request.getParameter("reply_writer");
 		String content = request.getParameter("reply_text");
-		System.out.println(writer+", "+content);
+		int bno = Integer.parseInt(request.getParameter("re_bno"));
+		System.out.println(writer+", "+content+", "+bno);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath(url);
-		forward.setRedirect(false);
+		ReplyDAO rDao = ReplyDAO.getInstance();
+		ReplyDTO rDto = new ReplyDTO(content, writer, bno);
+		int result = rDao.replyInsert(rDto);
 		
+		if(result > 0) {
+			System.out.println("댓글 등록 성공");
+		} else {
+			System.out.println("댓글 등록 실패");
+		}
 		
-		return forward;
+		return null;
 	}
 
 }

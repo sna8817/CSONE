@@ -1,5 +1,7 @@
 package com.shop_CSone.dao;
 
+import java.io.File;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import javax.swing.plaf.synth.SynthScrollBarUI;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.shop_CSone.common.Constants;
 import com.shop_CSone.dto.BoardDTO;
 import com.shop_CSone.dto.CriteriaDTO;
 import com.shop_CSone.mybatis.SqlMapConfig;
@@ -156,16 +159,37 @@ public class BoardDAO {
 	
 	// 게시판 삭제
 	public int boardDelete(int bno) {
+		String rbno = Integer.toString(bno);
+		//BoardDTO bDto = boardDetailView(rbno);
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-			result = sqlSession.delete("boardDelete", bno);
+			result = sqlSession.delete("boardDelete", rbno);
+			/*
+			System.out.println("bno삭제"+result);
+
+			// 댓글 삭제
+			if(result != 0) {
+				ReplyDAO rDao = ReplyDAO.getInstance();
+				result = rDao.replyDeleteAll(rbno);
+				
+				// 파일 삭제
+				if(bDto.getFilesize()!=0) {
+					File file = new File(Constants.UPLOAD_PATH+bDto.getFilename());
+					file.delete();
+				}
+				
+			sqlSession.commit();
+			System.out.println("commit 후의 result"+result);
+			}
+			*/
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sqlSession.close();
 		}
+		System.out.println("다 끝난 후의"+result);
 		return result;
 	}
 	

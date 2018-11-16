@@ -194,7 +194,7 @@
 		</choose>
 	</update>	
 	
-	<delete id="boardDelete" parameterType="com.shop_CSone.dto.BoardDTO">
+	<delete id="boardDelete" parameterType="String">
 		DELETE FROM CSBoard
 		WHERE bno=#{bno}
 	</delete>
@@ -212,12 +212,17 @@
 	
 	<insert id="replyInsert" parameterType="com.shop_CSone.dto.ReplyDTO">
 		INSERT INTO CSBoardreply(rno, content, writer, bno)
-		VALUES(#{rno},#{content},#{writer},#{bno})
+		VALUES(seq_CSBoardreply_rno.nextval,#{content},#{writer},#{bno})
 	</insert>
 	
 	
 	<delete id="replyDelete" parameterType="String">
 		DELETE FROM CSBoardreply
 		WHERE rno = #{rno}
+	</delete>
+	
+	<delete id="replyDeleteAll" parameterType="String">
+		DELETE FROM CSBoardreply
+		WHERE bno = #{bno}
 	</delete>
 </mapper>
