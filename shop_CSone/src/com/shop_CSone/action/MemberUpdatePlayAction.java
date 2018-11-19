@@ -20,7 +20,6 @@ public class MemberUpdatePlayAction implements Action{
 		
 		// View단에서 전송한 데이터를 받아오세요.
 		String id = request.getParameter("inputid");
-		String pw = request.getParameter("inputpw");
 		String name = request.getParameter("inputname");
 		String phone = request.getParameter("inputphone");
 		String email_id = request.getParameter("email_id");
@@ -29,7 +28,7 @@ public class MemberUpdatePlayAction implements Action{
 		String zipcode = request.getParameter("sample6_postcode");
 		String addr1 = request.getParameter("sample6_address");
 		String addr2 = request.getParameter("sample6_address2");		
-		MemberDTO mDto = new MemberDTO(id, pw, name, phone, email, zipcode, addr1, addr2);
+		MemberDTO mDto = new MemberDTO(email_id, name, phone, email, zipcode, addr1, addr2);
 		System.out.println(mDto.toString());
 		
 		MemberDAO mDao = MemberDAO.getInstance();

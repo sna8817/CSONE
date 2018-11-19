@@ -160,18 +160,18 @@ public class BoardDAO {
 	// 게시판 삭제
 	public int boardDelete(int bno) {
 		String rbno = Integer.toString(bno);
-		//BoardDTO bDto = boardDetailView(rbno);
+		BoardDTO bDto = boardDetailView(rbno);
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
-			result = sqlSession.delete("boardDelete", rbno);
-			/*
-			System.out.println("bno삭제"+result);
-
+			ReplyDAO rDao = ReplyDAO.getInstance();
 			// 댓글 삭제
+			result = rDao.replyDeleteAll(rbno);
+			
+
 			if(result != 0) {
-				ReplyDAO rDao = ReplyDAO.getInstance();
-				result = rDao.replyDeleteAll(rbno);
+				result = sqlSession.delete("boardDelete", rbno);
+				System.out.println("bno삭제"+result);
 				
 				// 파일 삭제
 				if(bDto.getFilesize()!=0) {
@@ -182,7 +182,7 @@ public class BoardDAO {
 			sqlSession.commit();
 			System.out.println("commit 후의 result"+result);
 			}
-			*/
+			
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -191,6 +191,18 @@ public class BoardDAO {
 		}
 		System.out.println("다 끝난 후의"+result);
 		return result;
+	}
+
+	// Replycount
+	public void boardReplyCntPlus(int bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.update("boardReplyCntPlus",bno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
 	}
 	
 	

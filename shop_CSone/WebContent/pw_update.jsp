@@ -7,18 +7,12 @@
 <meta charset="UTF-8">
 <title>PW_UPDATE</title>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 #body_rpw{
 padding-top: 190px;
 }
 	body,ul {
 		margin: 0;
 		padding: 0;
-		font-family: 'Nanum Gothic', sans-serif;
-	}
-	body {
-		/* background-color: #f5f6f7; */
-		background-color: #fffcf0;
 	}
 	a {
 		text-decoration: none;
@@ -48,7 +42,6 @@ padding-top: 190px;
 	}
 	.input_password {
 		width: 408px;
-		height: 16px;
 		border-width: 0px;
 		padding: 7px 0px 6px 0px;
 	}
@@ -170,13 +163,12 @@ padding-top: 190px;
 			alert(pwck+", "+rpw+", "+rpwck);
 			
 			/* 유효성 체크 */
-			/* id와 pw중 하나라도 값이 없으면 경고문 출력 */
 			if(pwck != "" && rpw !="" && rpwck !=""){
-				$("#frm_pwCk").submit();
-				alert("페이지 이동");	
+				alert("페이지 이동");
+				/* $("#frm_pwCk").submit(); */
 			}else{/*둘다 값x 또는 둘 중에 하나라도 값이x*/
 				$(".rpw_ck_err_check").css("display","block");
-				return; /*java로 이동하지 않고 화면단으로 다시 돌아감*/
+				return false; /*java로 이동하지 않고 화면단으로 다시 돌아감*/
 			}
 		});
 		

@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+/* @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+ */
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 #boardreply_body , #boardreply_body ul{
 	padding: 0;
 	margin: 0;
 }
 #boardreply_body *{
 	/*font-family: 'Noto Sans KR', sans-serif;*/
+	font-family: 'Yeon Sung', cursive;
 }
 #boardreply_body {
 	padding-top: 200px;
@@ -125,7 +128,7 @@
 	margin: 0 auto;
 	padding: 10px 30px;
 	text-align: center;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	max-width: 1000px;
 }
 #boardr_to> h3 {
@@ -142,7 +145,8 @@
 	margin: 0 auto;
 	padding: 50px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: thin solid beige;
+	border-radius: 3px;
 	max-width: 1000px;
 }
 #boardr_table {
@@ -229,7 +233,7 @@
 	margin: 0 auto;
 	padding: 10px 30px;
 	text-align: center;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	max-width: 1000px;
 }
 
@@ -249,6 +253,8 @@
 	margin: 0;
  	float: left;
  	display: inline-block;
+ 	border: 2px solid burlywood;
+ 	border-radius: 3px;
 }
 .reply_on {
 	text-align: center;
@@ -288,7 +294,9 @@
 	float: left;
 	display: inline-block;
 	text-align: center;
-	border: 1px solid red;
+	border-top: 1px dotted burlywood;
+	border-bottom: 1px solid bisque;
+	/* border: 1px solid red; */
 }
 .RD_one > p {
 	text-align: left;
@@ -332,7 +340,8 @@
 	margin: 0 60px;
 	padding: 20px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: 2px solid burlywood;
+	border-top-color: beige;
 	max-width: 1000px;
 	float: left;
 }
@@ -365,7 +374,7 @@
 	margin: 0 60px;
 	padding: 20px 30px;
 	text-align: center;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	max-width: 1000px;
 	float: left;
 }
@@ -557,6 +566,7 @@
 	 }
 	 // form태그로 데이터 보내기! -> serialize() + contentType
 	 //                     form 태그 직렬화!!
+	 
 	 $.ajax({
 			url: "replyinsert.bizpoll",
 			data: $("#reply_fmt").serialize(),
@@ -565,12 +575,10 @@
 				comment_list();
 				$("#reply_text").val("");
 			},
-			error:function(){
-				alert("SYSTEM ERROR!!")
+			error: function(){
+				alert("SYSTEM ERROR!!");
 			}
 	 });
-	 
-	 
 	 
   });
 
@@ -598,7 +606,7 @@
 				comment_list();
 			},
 			error:function(){
-				alert("SYSTEM ERROR!!")
+				alert("SYSTEM ERROR!!");
 			}
 	 	});
 		 
@@ -622,7 +630,7 @@
 		 	<tr class="line">
 		 		<th style="width: 100px"  class="line">no</th>
 		 								<!-- el태그로 받기 -->
-		 		<th style="width: 900px">${boardview.bno}</th>
+		 		<th style="width: 500px">${boardview.bno}</th>
 		 	</tr>
 		 	<tr class="line">
 		 		<th style="width: 100px">subject</th>

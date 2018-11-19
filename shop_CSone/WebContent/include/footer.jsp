@@ -6,9 +6,18 @@
 <meta charset="UTF-8">
 <title>footer</title>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
+	hr {
+		margin: 0;
+		padding: 0;
+	}
+	
 	/* footer */
-	#footer_body hr {
-		border: thin solid #fd999a;
+	#footer_body * {
+		font-family: 'Yeon Sung', cursive;
+	}
+	#footer_body> hr {
+		border: 3px solid #fd999a;
 		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
@@ -23,14 +32,14 @@
 	#footer_body{
 		background-color: white;
 		/* background-color: #fffcf0; */
-		margin: 0 auto;
-		padding: 0 auto;
+		margin: 0;
+		padding: 0;
 	}
 	#footer-wrapper{
 		min-width: 1320px;
 		display: block;
-		margin: 0 auto;
-		padding: 0 auot;
+		margin: 0;
+		padding: 0;
 	}
 	#footer-inner-wrapper{
 		/* padding-left: 30%; */
@@ -57,7 +66,8 @@
 	
 	
 	#footer {
-		padding: 15px 0;
+		padding: 0;
+		padding-top: 15px;
 	}
 	#footer * {
 		font-size: 11px;
@@ -79,14 +89,14 @@
 									/* 남발해서 사용 X */
 									/* CSS 속성으로 해결하고, 최후에 사용할 것을 권장 */
 	}
-	#footer_body #address {
+	#footer-wrapper #address {
 		margin: 0 auto;
 		text-align: center;
 	}
-	#footer_body #address * {
+	#footer-wrapper #address * {
 		font: 9px verdana;
 	}
-	#footer_body #addr_logo {
+	#footer-wrapper #addr_logo {
 		/* width: 63px;
 		height: 11px; */
 		width: 40px;
@@ -104,6 +114,7 @@
 </style>
 </head>
 <body id="footer_body">
+	<hr>
 	<div id="goon">
 	<div id="footer" class="divsize">
 			<ul>
@@ -112,16 +123,9 @@
 				<li><a href="#">책임의 한계와 법적고지</a></li>
 				<li><a href="#">회원정보 고객센터</a></li>
 			</ul>
-			<div id="address">
-				<span><a href="http://localhost:8081/shop_csone/include/header.html">
-				<img id="addr_logo" src="img/logo_csone_s.png" width="40" height="40"></a></span>
-				<span>Copyright</span>
-				<span>ⓒ <strong><a href="#">sconeCorp.</a></strong></span>
-				<span>All Rights Reserved.</span>
-			</div>
 	</div>
 	</div>
-		<hr>
+	<hr>
 	<footer>
 		<div id="footer-wrapper">
 			<div id="footer-inner-wrapper">
@@ -139,7 +143,13 @@
 			<p>062-720-4800</p>
 			<p>http://www.edupoll.net/</p>
 			</div>
-			
+			<div id="address">
+				<span><a href="http://localhost:8081/shop_csone/include/header.html">
+				<img id="addr_logo" src="img/logo_csone_s.png" width="40" height="40"></a></span>
+				<span>Copyright</span>
+				<span>ⓒ <strong><a href="#">sconeCorp.</a></strong></span>
+				<span>All Rights Reserved.</span>
+			</div>
 		</div>
 		
 	</footer>

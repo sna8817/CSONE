@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 #boardinsert_body , #boardinsert_body ul{
 	padding: 0;
 	margin: 0;
 }
-#boardinsert_body *{
-	/* font-family: 'Noto Sans KR', sans-serif; */
+#boardinsert_body *:not(.fa){
+	font-family: 'Yeon Sung', cursive;
 }
 #boardinsert_body {
 	padding-top: 200px;
@@ -26,7 +26,7 @@
 	margin: 0 auto;
 	padding: 10px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: 1px solid beige;
 	max-width: 1000px;
 }
 #boardr_to> h3 {
@@ -42,7 +42,7 @@
 	margin: 0 auto;
 	padding: 50px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: 1px solid beige;
 	max-width: 1000px;
 }
 #boardr_table {
@@ -181,6 +181,8 @@
 		}
 	});
 	
+	
+	
 	// 파일업로드 클릭시 업로드파일을 클릭 
 	$(document).on("click", ".btn-file",function(){
 		$("#uploadfile").click();
@@ -188,16 +190,31 @@
 	
 	// 파일이름에 값이 들어올 경우 파일이름을 나타나게 하고, fa아이콘 보이게!
 	$(document).on("change","#uploadfile",function(){
-		var filesize = $(this)[0].files;
+		var filesize = $(this)[0].files; // file들을 첨부할 수 있으니(배열)
 		
 		// 파일 선택시 취소 버튼 누를때 선택된 파일없음으로 뜨는 명령어
 		if(filesize.length <1){
-			$("#file-name").text("선택된 파일 없음");
-			$("#close_btn").css("display","none");
+			$("#file-name").text("선택된 파일 없음");     // 파일이 없기 때문에 선택된 파일없음
+			$("#close_btn").css("display","none");  // 클로즈 버튼 none
 		} else{
+			// 첨부파일이 있다면 첨부파일의 이름과 사이즈를 불러옴!
 			var filename = this.files[0].name;
-			$("#file-name").text(filename);
-			$("#close_btn").css("display","inline-block");
+			var filesize = this.files[0].size;
+			
+			var maxSize = 10*1024*1024;    // 10MB로 용량 제한
+			
+			if(filesize>maxSize){ // 용량 제한 걸림!
+				alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+				$("#file-name").text("선택된 파일 없음");
+				// 화면단에서는 input type="file" 용량 제한하는 코드가 없기 때문에 경고창은 뜨지만 실제로는 10mb넘는 파일이 들어가 있다
+				// 반드시 초기화를 시켜서 지워줄 것!!
+				$("#uploadfile").val("");     // 초기화
+				$("#now-file-size").val(0);   // 초기화
+			} else { // 첨부 가능!!
+				$("#now-file-size").val(filesize);
+				$("#file-name").text(filename);
+				$("#close_btn").css("display","inline-block");
+			}
 		}
 	});
 	
@@ -208,6 +225,8 @@
 		$("#file-name").text("선택된 파일 없음");
 		$("#close_btn").css("display","none");
 	});
+	
+	
 	
 	
 	

@@ -7,20 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
-#constract_index {padding-top: 190px;}
-body, ul, p {
+#constract_index > header {padding-top: 100px;}
+#constract_index, #constract_index ul, #constract_index p {
 	margin: 0;
 	padding: 0;
-	font-family: 'Nanum Gothic', sans-serif;
 }
-body {
-	background-color: #fffcf0;
+#constract_index {
+	/* background-color: #fffcf0; */
 }
-a {
+#constract_index a {
 	text-decoration: none;
 }
-ul {
+#constract_index ul {
 	list-style: none;
 }
 hr {
@@ -528,7 +526,6 @@ h3.article_title {
 				회사, 동아리 등 단체에서 사용할 ID가 필요하세요? <a href="#">단체 회원 가입</a>
 			</div>
 		</div>
-		<hr>
 	</article>
 
 

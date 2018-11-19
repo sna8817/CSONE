@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-	
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 	#board_body, #board_body ul{
 		padding: 0;
 		margin: 0;
@@ -16,14 +15,14 @@
 	#board_body {
 		padding-top: 190px;
 	}
-	#board_body *{
-		font-family: 'Noto Sans KR', sans-serif;
+	#board_body *:not(.fa){
+		font-family: 'Yeon Sung', cursive;
 	}
 	#BTwrap {
 		margin: 0 auto;
 		padding: 50px 30px;
 		text-align: center;
-		border: 1px solid red;
+		border: 1px solid beige;
 		max-width: 1000px;
 	}
 	#BTwrap a{
@@ -96,7 +95,32 @@
 		background-color: #FADAD8;
 		border-radius: 30px;
 	}
+	@keyframes textColorAnimation {
+		0% {
+		border: 1px solid #FADAD8;
+		background-color: #FADAD8;
+		color: white;
+		}		/* 시작부분: 0% = from */
+		50% {
+		border: 1px solid white;
+		background-color: white;
+		color: #FADAD8;
+		}
+		100% {
+		border: 1px solid #fd999a;
+		background-color: #fd999a;
+		color: white;
+		}		/* 마지막부분 100% = to */
+	}
+	.new_time {
+		animation-name: textColorAnimation; 	/* 설정할 애니메이션 이름 */
+		animation-duration: 5s;					/* 1회 애니메이션 동작시간: 5s */
+		animation-iteration-count: infinite;	/* 반복횟수: 무한 반복 */
+	}
 	
+	.replyCnt_color {
+		color: red;
+	}
 	
 	
 	
@@ -159,6 +183,21 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// 정렬시 색상
+		
+		var code = $("#code").val();
+		if(code == "new"){
+			$("#orderNew").css("color","#E71D36").css("font-weight","bold").css("text-decoration","underline");
+		} else if(code == "good"){
+			$("#orderGood").css("color","#E71D36").css("font-weight","bold").css("text-decoration","underline");
+		} else if(code == "reply"){
+			$("#orderReply").css("color","#E71D36").css("font-weight","bold").css("text-decoration","underline");
+		} else if(code == "cnt"){
+			$("#orderCnt").css("color","#E71D36").css("font-weight","bold").css("text-decoration","underline");
+		}
+		
+		
+		
 		$("#bt_select").click(function(){
 			alert("test");
 			var keyword = $("#input_select").val();
@@ -180,7 +219,7 @@
 		<div id="BT_top">
 			<h3>Q&A</h3>
 				<input type="hidden" value="${code}" id="code">
-				<span><strong><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=new" id="orderNew">최신순</a></strong></span>&nbsp;<span class="bar">|</span>
+				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=new" id="orderNew">최신순</a></span>&nbsp;<span class="bar">|</span>
 				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=good" id="orderGood">추천순</a></span>&nbsp;<span class="bar">|</span>
 				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=reply" id="orderReply">댓글순</a></span>&nbsp;<span class="bar">|</span>
 				<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=cnt" id="orderCnt">조회순</a></span>&nbsp;
@@ -214,7 +253,9 @@
 					<c:if test="${today2==regdate2}">
 						<span class="new_time">NEW</span>
 					</c:if>
-
+					<c:if test="${bDto.replycnt > 0}">
+					<span class="replyCnt_color">${bDto.replycnt}</span>
+					</c:if>
 					</a>
 					</th>
 					<th>${bDto.viewcnt}</th>
@@ -233,8 +274,8 @@
 					</th>
 					<th class="icon">
 						<c:if test="${bDto.filesize >0}">
-							<img alt="파일이미지" src="img/fileimage1.PNG" width="20px" height="20px">
-							<!-- <i class="fa fa-floppy-o"></i> -->
+							<!-- <img alt="파일이미지" src="img/fileimage1.PNG" width="20px" height="20px"> -->
+							<i class="fa fa-floppy-o"></i> 
 						</c:if>
 					</th>
 				</tr>
@@ -282,10 +323,6 @@
 	</div>
 	</article>
 	
-	<footer>
-	
-		<hr>
-	</footer>
 </body>
 </html>
 <%@ include file="../include/footer.jsp" %>

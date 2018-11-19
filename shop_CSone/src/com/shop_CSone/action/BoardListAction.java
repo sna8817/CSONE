@@ -68,6 +68,7 @@ public class BoardListAction implements Action{
 		pageMaker.setCriDto(criDto);
 		
 		int totalCount = bDao.totalCount(criDto);
+		
 		pageMaker.setTotalCount(totalCount);
 		request.setAttribute("pageMaker", pageMaker);
 		

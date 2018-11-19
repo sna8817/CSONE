@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MEMBER_Join</title>
+<title>member_update</title>
 <style type="text/css">
-#body_join > #signin_wrap {
-	padding-top: 190px;
+#body_join {
+	padding-top: 150px;
 }
-	#body_join {
+	body {
 		margin: 0;
 		padding: 0;
 	}
@@ -63,7 +63,7 @@
 		color: #fd999a;
 		padding-left: 15px;
 	}
-	#join_bar {
+	#update_bar {
 		margin: 20px auto;
 		border: thin solid #fd999a;
 	}
@@ -81,10 +81,10 @@
 	}
 	
 	
-	
-	hr{
-		border: thin solid #fd999a;
+	hr {
+	border: thin solid #fd999a;
 	}
+	
 	
 	
 	
@@ -93,11 +93,12 @@
 	height: 30px;
 	box-sizing: border-box;
 	padding: 5px 5px;
+	border: 1px solid lightgray;
 }
 #wrap_email select {
 	margin: 0 auto;
  	padding: 0 10px;
-	width: 432px;
+	width: 435px;
 	height: 30px;
 	box-sizing: border-box;
 }
@@ -126,6 +127,7 @@
 	height: 30px;
 	box-sizing: border-box;
 	padding: 5px 5px;
+	border: 1px solid lightgray;
 }
 #addr_find {
 	border: 0;
@@ -137,15 +139,13 @@
 }
 
 
+
 </style>
 
 
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".input_signin").prev().css("top", "-18px").css("font-size","12px").css("color","#452018");
-		
-		
 		$(".input_signin").focus(function() {
 			$(this).parent().css("border-bottom", "2px solid #fd999a");
 			$(this).prev().css("top", "-18px").css("font-size","12px").css("color","#452018");
@@ -160,7 +160,10 @@
 				$(this).next().css("display","none");
 			}
 			
-		});		
+		});
+	
+		
+		
 		/* $(".input_signin").blur(function(){
 			var inputval = $(this).val();
 			if(inputval == ""){
@@ -171,23 +174,6 @@
 				$(this).parent().css("margin-bottom", "5px");
 			}
 		}); */
-		$("#wrap_email").blur(function(){
-			var inputval2 = $(this).val();
-			if(inputval2 == ""){
-				$(this).next().css("display", "block");
-			}else {
-				$(this).next().css("display", "block");
-			}
-		});
-		$("#wrap_addr").blur(function(){
-			var inputval3 = $(this).val();
-			if(inputval3 == ""){
-				$(this).next().css("display", "block");
-			}else {
-				$(this).next().css("display", "block");
-			}
-		});
-		
 	});
 	
 	
@@ -237,6 +223,20 @@
 		
 	});
 		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -245,6 +245,8 @@
 		var
 		form = $("#frm_mem");
 		mid= $(inputid);
+		mpw= $(inputpw);
+		mpw2= $(inputpw2);
 		mname= $(inputname);
 		mphone= $(inputphone);
 		memail1= $(email_id);
@@ -270,6 +272,30 @@
 			return false; /* 이걸해야 submit이 안됨! 꼭 해야함 */
 		}
 		
+		var pw = $.trim(mpw.val());
+		var pw2 = $.trim(mpw2.val());
+		var regPass = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;/* 영문자, 숫자 포함 특수문자 사용가능 8~20자리 */
+		if (pw == ""){
+			mpw.focus();
+			mpw.next().text("필수정보 입니다.").css("display","block");
+			mpw.parent().css("margin-bottom","30px");
+			return false;
+		} else if(!regPass.test(pw)){
+			mpw.focus();
+			mpw.next().text("8~20자 이내 영문자와 숫자 특수문자만 입력하세요.").css("display","block");
+			mpw.parent().css("margin-bottom","30px");
+			return false;
+		} else if(pw2 == ""){
+			mpw2.focus();
+			mpw2.next().text("필수정보 입니다.").css("display","block");
+			mpw2.parent().css("margin-bottom","30px");
+			return false;
+		} else if(pw != pw2){
+			mpw2.select();
+			mpw2.next().text("비밀번호가 일치하지않습니다.").css("display","block");
+			mpw2.parent().css("margin-bottom","30px");
+			return false;
+		}
 		 
 		var name = $.trim(mname.val());
 		if(name = "") {
@@ -294,12 +320,12 @@
 		} else if($.isNumeric(phone)==false){/* 숫자값만 들어왔는지 체크 */
 			mphone.select();
 			mphone.next().text("숫자만 임력하세요.").css("display","block");
-			mphone.parent().css("margin-bottom","10px");
+			mphone.parent().css("margin-bottom","30px");
 			return false;
 		} else if(!regphone.test(phone)){
 			mphone.focus();
 			mphone.next().text("올바른 값을 입력하세요").css("display","block");
-			mphone.parent().css("margin-bottom","10px");
+			mphone.parent().css("margin-bottom","30px");
 			return false;
 		}
 	 
@@ -311,15 +337,18 @@
 		if(mailid == ""){
 			memail1.focus();
 			$("#selmail").next().text("필수정보 입니다.").css("display","block");
+			memail1.parent().css("margin-bottom","30px");
 			return false;
 			
 		} else if(mailurl==""){
 			memail2.focus();
 			$("#selmail").next().text("필수정보 입니다.").css("display","block");
+			memail2.parent().css("margin-bottom","30px");
 			return false;
 		} else if(!regMail.test(mail)){
 			memail1.select();
-			mail.next().text("Email형식이 올바르지 않습니다").css("display","block");
+			memail1.next().text("Email형식이 올바르지 않습니다").css("display","block");
+			/* mail.parent().css("margin-bottom","30px"); */
 			return false;
 		}
 		
@@ -329,14 +358,19 @@
 		var addr2 = $.trim(maddr2.val());
 		
 		if(zipcodeVal==""){
+			
 			zipcode.parent().children().last().text("필수정보 입니다.").css("display","block");
+			/* zipcodeVal.parent().css("margin-bottom","30px"); */
 			return false;
 		} else if (addr1== ""){
+			
 			maddr1.parent().children().last().text("필수정보 입니다.").css("display","block");
+			/* addr1.parent().css("margin-bottom","30px"); */
 			return false;
 		} else if (addr2==""){
 			maddr2.focus();
 			maddr2.parent().children().last().text("필수정보 입니다.").css("display","block");
+		/* 	addr2.parent().css("margin-bottom","30px"); */
 			return false;
 		}
 		
@@ -345,58 +379,102 @@
 		/* 유효성체크 값이 유효한 값 확인 끝! */
 		form.submit(); /* -->> DB로 보낸다!! */
 		
+	});
 		
 		
 		
-
 		
-		
-	 });	
-		
-
 	
 	
 	
 	
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script>
+
     function sample6_execDaumPostcode() {
+
         new daum.Postcode({
+
             oncomplete: function(data) {
+
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+ 
+
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+
                 var fullAddr = ''; // 최종 주소 변수
+
                 var extraAddr = ''; // 조합형 주소 변수
+
+ 
+
                 // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+
                     fullAddr = data.roadAddress;
+
+ 
+
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
+
                     fullAddr = data.jibunAddress;
+
                 }
+
+ 
+
                 // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+
                 if(data.userSelectedType === 'R'){
+
                     //법정동명이 있을 경우 추가한다.
+
                     if(data.bname !== ''){
+
                         extraAddr += data.bname;
+
                     }
+
                     // 건물명이 있을 경우 추가한다.
+
                     if(data.buildingName !== ''){
+
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+
                     }
+
                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+
                 }
+
+ 
+
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
 
                 document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+
                 document.getElementById('sample6_address').value = fullAddr;
+
+ 
+
                 // 커서를 상세주소 필드로 이동한다.
+
                 document.getElementById('sample6_address2').focus();
+
             }
+
         }).open();
+
     }
+
 </script>
 </head>
 <body id="body_join">
@@ -408,9 +486,20 @@
 					<label for="inputid" id="la_id">아이디</label>
 					<input type="text" id="inputid" class="input_signin" name="inputid" readonly="readonly" value="${sessionScope.loginUser.id}">
 					<span class="error">필수 정보입니다.</span>
-					<span class="error">이미 등록된 아이디입니다.</span>
 				</div>
-				<div><hr id="join_bar"></div>
+				<!-- <div id="id_check" class="check">사용 가능한 아이디입니다.</div> -->
+				<div class="div_input" id="signin_pw">
+					<label for="inputpw" id="la_pw">비밀번호</label>
+					<input type="password" 	id="inputpw" class="input_signin" name="inputpw">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<div class="div_input" id="signin_pw2">
+					<label for="inputpw2" id="la_pw2">비밀번호 재확인</label>
+					<input type="password" id="inputpw2" class="input_signin">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<!-- <div id="pw2_check" class="check">비밀번호가 일치합니다.</div> -->
+				<div><hr id="update_bar"></div>
 				<div class="div_input" id="signin_name">
 					<label for="inputname" id="la_name">이름</label>
 					<input type="text" id="inputname" class="input_signin" name="inputname" value="${sessionScope.loginUser.name}">
@@ -421,11 +510,19 @@
 					<input type="text" id="inputphone" class="input_signin" name="inputphone" value="${sessionScope.loginUser.phone}">
 					<span class="error">필수 정보입니다.</span>
 				</div>
+				<!-- <div class="div_input" id="signin_address">
+					<label for="inputaddress" id="la_address">주소</label>
+					<input type="text" id="inputaddress" class="input_signin">
+				</div>
+				<div class="div_input" id="signin_email">
+					<label for="inputemail" id="la_email">이메일</label>
+					<input type="text"  id="inputemail" class="input_signin">
+				</div> -->
 				
 		<div id="member_last_wrap">
 		<div id="wrap_email">
-		<input type="text" id="email_id" placeholder="ID" name="email_id" > <span>
-			@ </span> <input type="text" id="email_url" placeholder="URL" name="email_url"> <select
+		<input type="text" id="email_id" placeholder="ID" name="email_id" class="input_signin"> <span>
+			@ </span> <input type="text" id="email_url" placeholder="URL" name="email_url" class="input_signin"> <select
 			id="selmail">
 			<option value="" selected="selected">Email 선택</option>
 			<option value="directVal">직접 입력</option>
@@ -438,13 +535,15 @@
 		</div>
 				
 			<div id="wrap_addr">
-			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly="readonly" name="sample6_postcode" value="${sessionScope.loginUser.zipcode}">
+			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly="readonly" name="sample6_postcode" class="input_signin" value="${sessionScope.loginUser.zipcode}">
 			<input type="button" id="addr_find" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample6_address" placeholder="주소" readonly="readonly" name="sample6_address" value="${sessionScope.loginUser.addr1}">
-			<input type="text" id="sample6_address2" placeholder="상세주소" name="sample6_address2" value="${sessionScope.loginUser.addr2}">
+			<input type="text" id="sample6_address" placeholder="주소" readonly="readonly" name="sample6_address" class="input_signin" value="${sessionScope.loginUser.addr1}">
+			<input type="text" id="sample6_address2" placeholder="상세주소" name="sample6_address2" class="input_signin" value="${sessionScope.loginUser.addr2}">
 			<span class="error">필수 정보입니다.</span>
 			</div>	
 		</div>
+				
+				
 				
 				
 				<div>
@@ -453,7 +552,8 @@
 			</form>
 		</section>
 		
-
+		
+	
 	</div>
 </body>
 </html>

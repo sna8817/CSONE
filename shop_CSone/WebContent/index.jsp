@@ -9,11 +9,13 @@
 <title>CSONE</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 #indexbody {padding-top: 190px;}
 
 * {/* box-sizing: border-box; */}
 
-body {font-family: Verdana, sans-serif;
+body {
+font-family: 'Yeon Sung', cursive;
 	min-width: 1320px;
 }
 hr {

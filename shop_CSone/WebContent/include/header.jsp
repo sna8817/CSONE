@@ -12,21 +12,12 @@
 <meta charset="UTF-8">
 <title>header.html</title>
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-/* @import url('https://fonts.googleapis.com/css?family=Monoton');
-@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch');
-@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Libre+Barcode+39+Text'); */
+/* @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css); */
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 	* {
-		font-family: 'Noto Sans KR', sans-serif;
+		/* font-family: 'Noto Sans KR', sans-serif; */
+		font-family: 'Yeon Sung', cursive;
 	}
-/* 	#CSone {
-		font-family: 'Monoton', cursive;
-		font-family: 'Cabin Sketch', cursive;
-		font-family: 'Cabin Sketch', cursive;
-		font-family: 'Libre Barcode 39 Text', cursive;
-		color: #fd999a;
-		font-size: 50px;
-	} */
 	body, ul {
 	/* 여백삭제 */
 		margin: 0 auto;

@@ -12,25 +12,29 @@
 <title>CSONE LOGIN</title>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
-#body_login{
-padding-top: 190px;
-}
-	body,ul {
+	#body_login{
+		padding-top: 150px;
+	}
+	#body_login > body, #body_login > ul {
 		margin: 0;
 		padding: 0;
 		font-family: 'Nanum Gothic', sans-serif;
 	}
-	body {
-		/* background-color: #f5f6f7; */
-		background-color: #fffcf0;
-	}
-	a {
+	#body_login > a {
 		text-decoration: none;
 	}
-	ul {
+	#body_login > ul {
 		list-style-type: none;
 	}
 	/* 로고 */
+	#wrap_login {
+		/* background-color: #fffcf0; */
+		width: 600px;
+		height: 550px;
+		padding: 0 auto;
+		margin: 0 auto;
+		/* border: 1px solid red; */
+	}
 	#content_layout {
 		width: 460px;
 		margin: 0 auto;
@@ -77,10 +81,13 @@ padding-top: 190px;
 		line-height: 61px;
 	}
 	
-	table {
+	#body_login > table {
 		width: 100%;
 	}
-	td {
+	#body_login #login_table {
+		width: 460px;
+	}
+	#body_login > td {
 		height: 26px;
 	}
 	#state {
@@ -121,8 +128,7 @@ padding-top: 190px;
 	#secure img {
 		vertical-align: bottom;
 	}
-	hr {
-		width: 98%;
+	#login_bar {
 		margin: 20px auto;
 		border: thin solid #fec9c9;
 	}
@@ -160,7 +166,9 @@ padding-top: 190px;
 		text-align: center;
 	}
 	
-
+	hr{
+		border: thin solid #fec9c9;
+	}
 </style>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -239,6 +247,8 @@ padding-top: 190px;
 </script>
 </head>
 <body id="body_login">
+	<div id="wrap_login">
+	
 	<div id="content_layout">
 		<header>
 			<div id="header_div">
@@ -264,7 +274,7 @@ padding-top: 190px;
 			<div><a href="#" id="btn_login">로그인</a></div>
 			<!-- </form> -->
 			<div>
-				<table>
+				<table id="login_table">
 					<tbody>
 						<tr>
 							<td id="state"><!-- <img src="img/check_off.gif"> -->
@@ -281,7 +291,7 @@ padding-top: 190px;
 					</tbody>
 				</table>
 			</div>
-			<hr>
+			<hr id="login_bar">
 			<div id="member">
 				<a href="#">아이디 찾기</a>
 				&nbsp;
@@ -304,7 +314,7 @@ padding-top: 190px;
 
 		
 	</div>
-
+</div>
 </body>
 </html>
 <%@ include file="include/footer.jsp" %>

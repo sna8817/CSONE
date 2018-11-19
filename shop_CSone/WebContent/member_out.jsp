@@ -8,18 +8,15 @@
 <title>member_out</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 #body_draw{
 padding-top: 190px;
 }
 	body,ul {
 		margin: 0;
 		padding: 0;
-		font-family: 'Nanum Gothic', sans-serif;
 	}
 	body {
 		/* background-color: #f5f6f7; */
-		background-color: #fffcf0;
 	}
 	a {
 		text-decoration: none;

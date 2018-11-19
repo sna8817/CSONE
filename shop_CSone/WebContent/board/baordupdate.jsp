@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
 #boardinsert_body , #boardinsert_body ul{
 	padding: 0;
 	margin: 0;
 }
-#boardinsert_body *{
-	/* font-family: 'Noto Sans KR', sans-serif; */
+#boardinsert_body *:not(.fa){
+	font-family: 'Yeon Sung', cursive;
 }
 #boardinsert_body {
 	padding-top: 200px;
@@ -26,7 +26,7 @@
 	margin: 0 auto;
 	padding: 10px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: 1px solid beige;
 	max-width: 1000px;
 }
 #boardr_to> h3 {
@@ -42,7 +42,7 @@
 	margin: 0 auto;
 	padding: 50px 30px;
 	text-align: center;
-	border: 1px solid red;
+	border: 1px solid beige;
 	max-width: 1000px;
 }
 #boardr_table {

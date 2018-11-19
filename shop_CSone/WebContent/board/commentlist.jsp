@@ -24,13 +24,13 @@
 			<!-- 댓글이 있을때 -->
 
 			<div class="reply_RD">
+				<!-- 수정 -->
+				<div><p>댓글<span class="line"> | </span><span class="Num_cl">${replyList.size()}</span></p></div>
 				<c:if test="${replyList.size()==0}">
 					<div class="reply_no">
 					<input type="text" readonly="readonly" placeholder="등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요" id="no_input">
 					</div>
 				</c:if>
-				<!-- 수정 -->
-				<div><p>댓글<span class="line"> | </span><span class="Num_cl">${replyList.size()}</span></p></div>
 				<c:forEach items="${replyList}" var="replyview">
 				<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today2"/>
 				<fmt:formatDate value="${replyview.regdate}" pattern="yyyy-MM-dd" var="regdate2"/>
