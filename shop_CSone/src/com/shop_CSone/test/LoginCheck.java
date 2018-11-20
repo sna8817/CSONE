@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.shop_CSone.dao.MemberDAO;
+import com.shop_CSone.dto.MemberDTO;
 
 public class LoginCheck {
 
@@ -14,7 +15,13 @@ public class LoginCheck {
 		String pw = "asd123456";
 
 		MemberDAO mDao = MemberDAO.getInstance();
-		mDao.LoginCheck(id, pw);
+		MemberDTO mDto = mDao.LoginCheck(id,pw);
+		
+		if(mDto != null) {
+			System.out.println("로그인성공");
+		} else {
+			System.out.println("로그인 실패");
+		}
 	}
 
 }
