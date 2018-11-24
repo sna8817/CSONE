@@ -40,7 +40,6 @@ public class BoardSearchAction implements Action{
 		criDto.setKeyword(keyword);
 		criDto.setFlag(flag);
 		
-		
 		List<BoardDTO> SearchList = bDao.boardSearch(criDto);
 		request.setAttribute("boardList", SearchList);
 		

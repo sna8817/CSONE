@@ -22,23 +22,23 @@ public class BoardListAction implements Action{
 		String url="board/boardlist.jsp";
 		
 		CriteriaDTO criDto = new CriteriaDTO();
-		int page = 1;
+		int page = 1; // 항상 첫 페이지는 무조건 1페이지
 		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
+			page = Integer.parseInt(request.getParameter("page")); // page = 2 ... finalPage까지
 		}
 		System.out.println("페이지번호: "+page);
-		criDto.setPage(page);
+		criDto.setPage(page); // criDto로 가서 ,페이지 집어넣기
 
 		
 		// 정렬을 위한 코드
-		String code="new";
+		String code="new"; 
 		if(request.getParameter("key") != null) {
 			code = request.getParameter("key");
 		}
 		criDto.setCode(code);
 		request.setAttribute("code", code);
 		
-		
+		// 검색창
 		String flag=null;
 		String keyword = null;
 		if(request.getParameter("keyword") != null) {
@@ -52,7 +52,6 @@ public class BoardListAction implements Action{
 			request.setAttribute("flag", flag);
 			request.setAttribute("keyword", keyword);
 		}
-		
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		// 게시글 목록(정보들) 출력

@@ -179,7 +179,8 @@
 		border: 1px solid #F7AA97;
 		background-color: #F7AA97;
 	}
-	
+	#search_result {
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -207,6 +208,7 @@
 			location.href="boardList.bizpoll?flag="+flag+"&keyword="+keyword;
 			
 		});
+		
 	});
 </script>
 </head>
@@ -285,6 +287,12 @@
 			<tfoot></tfoot>
 		</table>
 		
+	<!-- 검색 결과 -->
+	<div id="search_result">
+	 <span>${keyword}의 검색 결과는 총""개 입니다.</span>
+	</div>
+	
+	
 	<div id="b_wrap">
 	<div id="pagination">
 		<div class = "page">
@@ -300,7 +308,7 @@
 			
 			<c:if test="${pageMaker.next}">
 				<span class="pagent" id="nohover">...</span>
-				<a href="boardList.bizpoll?page=${pageMaker.finalPage+1}" class="pagent">${pageMaker.finalPage+1}</a>
+				<a href="boardList.bizpoll?page=${pageMaker.finalPage}" class="pagent">${pageMaker.finalPage}</a>
 				<a href="boardList.bizpoll?page=${pageMaker.endPage+1}" class="pagent">&raquo;</a>
 			</c:if>
 		</div>
@@ -317,7 +325,7 @@
 			<option value="4">내용</option>
 			<option value="5">제목+내용</option>
 		</select>
-		<input id="input_select" stype="text" placeholder="검색어를 입력하세요">
+		<input id="input_select" type="text" placeholder="검색어를 입력하세요">
 		<button id="bt_select">검색</button>
 	 </div>
 	</div>

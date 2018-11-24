@@ -52,6 +52,8 @@
 		/* padding-left: 10%; */
 		text-align: center;
 		display: inline-block;
+		float: left;
+		margin-left: 20%;
 	}
 	
 	.footer-th{
@@ -62,7 +64,6 @@
 		/* padding-left: 10%; */
 		font-size: 11px;
 	}
-	
 	
 	
 	#footer {
@@ -111,6 +112,8 @@
 	#footer > ul > li a:hover {
 		color: #fec8c9;
 	}
+	#footer-right-wrapper {
+	}
 </style>
 </head>
 <body id="footer_body">
@@ -137,12 +140,15 @@
 					<th class="footer-th">기관소개</th>
 					<th class="footer-th">찾아오시는 길</th>
 					</tr>
+					<tr>
+					</tr>
 				</thead>
 			</table>
+			
+			<div id="footer-right-wrapper">
 			<p>광주광역시 북구 중흥동 712-3 한경빌딩 5층</p>
 			<p>062-720-4800</p>
 			<p>http://www.edupoll.net/</p>
-			</div>
 			<div id="address">
 				<span><a href="http://localhost:8081/shop_csone/include/header.html">
 				<img id="addr_logo" src="img/logo_csone_s.png" width="40" height="40"></a></span>
@@ -150,6 +156,9 @@
 				<span>ⓒ <strong><a href="#">sconeCorp.</a></strong></span>
 				<span>All Rights Reserved.</span>
 			</div>
+			</div>
+			
+		    </div>
 		</div>
 		
 	</footer>

@@ -33,13 +33,13 @@ public class CriteriaDTO {
 		return page;
 	}
 
-	public void setPage(int page) {
-		if(page <= 0 ) {
+	public void setPage(int page) { // page = 2
+		if(page <= 0 ) { // page가 1보다 높기 때문에 if문 타지 않음
 			this.page = 1;
 			return;
 		}
 		this.page = page;
-	}
+	} // 호출한 곳으로 돌아감
 
 	// method for MyBatis SQL Mapper: 조회 시작 row 취득하는 메서드
 	public int getPageStart() {

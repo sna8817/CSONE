@@ -162,7 +162,6 @@ padding-top: 190px;
 	}
 	.input_withdraw {
 		width: 408px;
-		height: 16px;
 		border-width: 0px;
 		padding: 7px 0px 6px 0px;
 	}

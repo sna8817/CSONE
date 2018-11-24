@@ -410,7 +410,6 @@
 					<span class="error">필수 정보입니다.</span>
 					<span class="error">이미 등록된 아이디입니다.</span>
 				</div>
-				<div><hr id="join_bar"></div>
 				<div class="div_input" id="signin_name">
 					<label for="inputname" id="la_name">이름</label>
 					<input type="text" id="inputname" class="input_signin" name="inputname" value="${sessionScope.loginUser.name}">
