@@ -62,12 +62,10 @@ public class BoardListAction implements Action{
 		Date today = new Date();
 		request.setAttribute("today", today);
 
-		
+		// 페이지 네이션 생성
 		PageMakerDTO pageMaker = new PageMakerDTO();
 		pageMaker.setCriDto(criDto);
-		
 		int totalCount = bDao.totalCount(criDto);
-		
 		pageMaker.setTotalCount(totalCount);
 		request.setAttribute("pageMaker", pageMaker);
 		
