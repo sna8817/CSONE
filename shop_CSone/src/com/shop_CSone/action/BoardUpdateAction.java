@@ -14,7 +14,7 @@ public class BoardUpdateAction implements Action{
 	@Override
 	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "board/baordupdate.jsp";
+		String url = "board/boardupdate.jsp";
 		
 		String bno = request.getParameter("bno");
 		System.out.println("====>bno"+bno);
