@@ -18,6 +18,9 @@ body {
 font-family: 'Yeon Sung', cursive;
 	min-width: 1320px;
 }
+a {
+	color: black;
+}
 hr {
 	border: thin solid #fd999a;
 	}
@@ -406,7 +409,7 @@ hr {
 							<div class="thumbnail">
 								<img class="card_img" src="img/${bestDto.p_img}">
 								<!-- 상세페이지 -->
-								<%--  <div class="modal_all">
+								<%-- <div class="modal_all">
 								 <div class="modal_in">
 								  <div class="modal_up"><span class="draw">${bestDto.p_name}</span><span class="close_btn"><i class="fa fa-close"></i></span></div>
 								  <div class="modal_img"><img alt="" src="img/${bestDto.p_img}"><h3>${bestDto.p_name}<span> (${bestDto.p_detail}) </span></h3></div>
@@ -414,8 +417,7 @@ hr {
 								   <h4>"${bestDto.p_text}"</h4>
 							 	  </div>
 								 </div>
-								</div>  --%>
-								<!-- <img alt="상품1" src="img/main1.png" width="296" height="240" class="imege">	 -->
+								</div> --%>
 							</div>
 							<div class="area_title">
 								<%-- <strong class="best_prise">${bestDto.p_price}</strong> --%>
@@ -450,6 +452,7 @@ hr {
 			<form>
 			<div class="best_item">
 			<c:forEach items="${newlist}" var="newDto">
+			<a href="productBiewcnt.bizpoll?p_code=${newDto.p_code}">
 						<div class="area_thumbnail">
 								<strong class="title">${newDto.p_name}</strong>
 							<div class="thumbnail">
@@ -472,6 +475,7 @@ hr {
 							</div>
 						</div>
 					<!-- <div class="area_status"></div> -->
+					</a>
 		</c:forEach>
 		</div>
 		</form>

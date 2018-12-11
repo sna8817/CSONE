@@ -74,14 +74,10 @@
 		float: left;
 	}
 	.product_img> img{
-		width: 400px;
-		height: 400px;
+		width: 300px;
 	}
 	.product_text {
-		padding: 0 auto;
 		margin: 0 auto;
-		padding-right: 40px;
-		display: inline-block;
 	}
 	.option > * {
 		list-style: none;

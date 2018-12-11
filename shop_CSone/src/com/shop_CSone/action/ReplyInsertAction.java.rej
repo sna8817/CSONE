@@ -1,0 +1,11 @@
+diff a/shop_CSone/src/com/shop_CSone/action/ReplyInsertAction.java b/shop_CSone/src/com/shop_CSone/action/ReplyInsertAction.java	(rejected hunks)
+@@ -23,8 +23,8 @@
+ 		System.out.println(writer+", "+content+", "+bno);
+ 		
+ 		// bno 게시글에 댓글 등록
+-		ReplyDAO rDao = ReplyDAO.getInstance();
+ 		ReplyDTO rDto = new ReplyDTO(content, writer, bno);
++		ReplyDAO rDao = ReplyDAO.getInstance();
+ 		int result = rDao.replyInsert(rDto);
+ 		
+ 		

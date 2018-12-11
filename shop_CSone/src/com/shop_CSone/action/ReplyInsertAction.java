@@ -23,8 +23,8 @@ public class ReplyInsertAction implements Action{
 		System.out.println(writer+", "+content+", "+bno);
 		
 		// bno 게시글에 댓글 등록
-		ReplyDTO rDto = new ReplyDTO(content, writer, bno);
 		ReplyDAO rDao = ReplyDAO.getInstance();
+		ReplyDTO rDto = new ReplyDTO(content, writer, bno);
 		int result = rDao.replyInsert(rDto);
 		
 		
