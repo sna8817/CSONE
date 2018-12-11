@@ -38,6 +38,7 @@ import com.shop_CSone.action.MemberpwPlayAction;
 import com.shop_CSone.action.PwPlayAction;
 import com.shop_CSone.action.ReplyDeleteAction;
 import com.shop_CSone.action.ReplyInsertAction;
+import com.shop_CSone.action.productDetailAction;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
@@ -167,6 +168,9 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/replyinsert.bizpoll")) { // 댓글 입력
 			action = new ReplyInsertAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/productBiewcnt.bizpoll")) { // 상품 페이지
+			action = new productDetailAction();
 			forward = action.excute(request, response);
 		}
  

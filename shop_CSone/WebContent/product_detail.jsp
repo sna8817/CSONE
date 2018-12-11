@@ -93,13 +93,13 @@
 <div class="product_all">
 	<div class="product_in">
 	<div class="product_left"><span class="draw">상품명</span><span class="close_btn"><i class="fa fa-close"></i></span></div>
-		<div class="product_img"><img alt="" src="img/Cake_01.jpg">
+		<div class="product_img"><img alt="" src="img/${productview.p_img}">
 		</div>
 	<!-- 상품옵션 전체영역 -->
 	<div class="wrap_prd">
-		<h3>갸또쇼콜라<span> (Gateau au Chocolat)</span></h3>
+		<h3>${productview.p_name}<span> (${productview.p_detail})</span></h3>
 		<div class="product_text">
-		<h4>"리얼 초콜릿의 진하면서도 깊은 맛이 느껴지는 초코 케이크"</h4>
+		<h4>"${productview.p_text}"</h4>
 		</div>
 		<div class="option">
 		<ul><li class="title"><i class="fa fa-angle-right" aria-hidden="true"></i>옵션</li>

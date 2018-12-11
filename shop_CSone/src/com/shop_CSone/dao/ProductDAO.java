@@ -71,6 +71,31 @@ public class ProductDAO {
 	}
 	
 	
+	// 상품 페이지 이동
+	public ProductDTO ProductDetailView(int p_code) {
+		sqlSession = sqlSessionFactory.openSession();
+		ProductDTO pDto = null;
+		
+		try {
+			pDto = sqlSession.selectOne("ProductDetailView",p_code);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return pDto;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 // ============================================================================================
 // mybatis 사용하기 전 DBManager와 PrepareStatement 방식으로 구현한 DAO 객체!
 //	Connection conn = null;

@@ -20,7 +20,6 @@ public class ReplyDeleteAction implements Action{
 		
 		ReplyDAO rDao = ReplyDAO.getInstance();
 		int result = rDao.replyDelete(rno);
-		
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		
