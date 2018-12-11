@@ -24,6 +24,16 @@
         WHERE ROWNUM <=8
     ]]>
 	</select>
+	
+	
+	
+	<!-- 상품 페이지 출력 -->
+	<select id="ProductDetailView" parameterType="int" resultType="com.shop_CSone.dto.ProductDTO">
+		<![CDATA[
+			SELECT * FROM CSproduct
+        	WHERE p_code = #{p_code}
+    	]]>
+	</select>
 <!-- ======================================================================================================== -->
 	<!-- MemberDAO -->
 	<!-- paramerType="경로" / 바인딩 변수를 사용하지 못하기 때문에 DTO의 값을 가져온다 (변수명 동일) -->

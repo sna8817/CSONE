@@ -400,12 +400,13 @@ hr {
 			<form>
 				<div class="best_item">
 			<c:forEach items="${bestlist}" var="bestDto">
+			<a href="productBiewcnt.bizpoll?p_code=${bestDto.p_code}">
 						<div class="area_thumbnail">
 								<strong class="title">${bestDto.p_name}</strong>
 							<div class="thumbnail">
 								<img class="card_img" src="img/${bestDto.p_img}">
 								<!-- 상세페이지 -->
-								 <div class="modal_all">
+								<%--  <div class="modal_all">
 								 <div class="modal_in">
 								  <div class="modal_up"><span class="draw">${bestDto.p_name}</span><span class="close_btn"><i class="fa fa-close"></i></span></div>
 								  <div class="modal_img"><img alt="" src="img/${bestDto.p_img}"><h3>${bestDto.p_name}<span> (${bestDto.p_detail}) </span></h3></div>
@@ -413,7 +414,7 @@ hr {
 								   <h4>"${bestDto.p_text}"</h4>
 							 	  </div>
 								 </div>
-								</div> 
+								</div>  --%>
 								<!-- <img alt="상품1" src="img/main1.png" width="296" height="240" class="imege">	 -->
 							</div>
 							<div class="area_title">
@@ -432,6 +433,7 @@ hr {
 							</div>
 						</div>
 					<!-- <div class="area_status"></div> -->
+			</a>
 		</c:forEach>
 				</div>
 		</form>
