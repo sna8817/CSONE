@@ -197,13 +197,27 @@ public class BoardDAO {
 	public void boardReplyCntPlus(int bno) {
 		sqlSession = sqlSessionFactory.openSession();
 		try {
-			sqlSession.update("boardReplyCntPlus",bno);
+			sqlSession.update("rpPlus",bno);
+			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			sqlSession.close();
 		}
 	}
+	// Replycount
+	public void boardReplyCntMinus(int bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.update("rpMinus",bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	
 	
 }

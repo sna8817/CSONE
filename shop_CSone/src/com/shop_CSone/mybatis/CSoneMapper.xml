@@ -155,8 +155,13 @@
 	
 	
 	
-	<update id="boardReplyCntPlus" parameterType="int">
-		
+	<update id="rpPlus">
+		UPDATE CSBoard SET replycnt = replycnt+1
+		WHERE bno=#{bno}
+	</update>
+	<update id="rpMinus">
+		UPDATE CSBoard SET replycnt = replycnt-1
+		WHERE bno=#{bno}
 	</update>
 	
 	
@@ -218,12 +223,6 @@
 		WHERE bno=#{bno}
 	</delete>
 	
-	
-	<update id="updateGoodCnt"  parameterType="String">
-		 UPDATE CSBoard 
-		 SET  goodcnt=goodcnt+1
-		 WHERE bno=#{bno}
-	</update>
 	
 	<!-- ===================================================================================================================== -->
 	<!-- ReplyDAO -->

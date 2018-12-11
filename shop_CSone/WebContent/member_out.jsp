@@ -132,7 +132,8 @@ padding-top: 190px;
 		padding: 0 auto;
 	}
 	#draw_text{
-		border: 2px solid #DE7E73;
+		/* border: 2px solid #30a1c07d; */
+		border: 7px double #DE7E73;
 		text-align: center;
 		border-radius: 13px;
 		color: #444f59;

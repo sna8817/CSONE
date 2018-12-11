@@ -27,12 +27,12 @@ public class ReplyInsertAction implements Action{
 		ReplyDTO rDto = new ReplyDTO(content, writer, bno);
 		int result = rDao.replyInsert(rDto);
 		
-		// bno 게시글 reply_cnt+1증가
-		/*BoardDAO bDao = BoardDAO.getInstance();
-		bDao.boardReplyCntPlus(bno);*/
 		
 		if(result > 0) {
 			System.out.println("댓글 등록 성공");
+			// bno 게시글 reply_cnt+1증가
+			BoardDAO bDao = BoardDAO.getInstance();
+			bDao.boardReplyCntPlus(bno);
 		} else {
 			System.out.println("댓글 등록 실패");
 		}
