@@ -181,13 +181,14 @@
 	
 	/* 네비게이션 메뉴바 */
 	#header_line3 {
-		width: 100%;
+		width: 1903px;
 		height: 49px;
 		background-color: #fec8c9;
 		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
 					0 4px 20px 0 rgba(0,0,0,0.19);
 		box-sizing: border-box;
 		z-index: 99;
+		margin: 0 auto;
 	}
 	#header_line3_ul > li {
 		float: left;

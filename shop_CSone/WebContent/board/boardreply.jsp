@@ -13,7 +13,7 @@
 	padding: 0;
 	margin: 0;
 }
-#boardreply_body *{
+#boardreply_body *:not(.fa){
 	/*font-family: 'Noto Sans KR', sans-serif;*/
 	font-family: 'Yeon Sung', cursive;
 }
@@ -634,7 +634,7 @@
 		 	</tr>
 		 	<tr class="line">
 		 		<th style="width: 100px">subject</th>
-		 		<th style="width: 900px">${boardview.title}   [${boardview.viewcnt}]</th>
+		 		<th style="width: 900px">${boardview.title}<i class="fa fa-eye">[${boardview.viewcnt}]</i><i class="fa fa-comment-dots">${boardView.replycnt}</i></th>
 		 	</tr>
 		 	<tr class="line">
 		 		<th style="width: 100px">writer</th>

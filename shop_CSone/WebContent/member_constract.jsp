@@ -435,7 +435,7 @@ h3.article_title {
 				<div class="terms">
 					<p class="terms_p">
 						<span class="terms_span"> <input type="checkbox" id="cbox">
-							<label for="cbox"> 이용약관, 개인정보 수집 및 이용, <br> 위치정보
+							<label for="cbox" style="width: 432px;padding-left: 10px;"> 이용약관, 개인정보 수집 및 이용, <br> 위치정보
 								이용약관(선택), 프로모션 안내<br> 메일 수신(선택)에 모두 동의합니다.
 						</label>
 						</span>

@@ -219,7 +219,11 @@
 	</delete>
 	
 	
-	
+	<update id="updateGoodCnt"  parameterType="String">
+		 UPDATE CSBoard 
+		 SET  goodcnt=goodcnt+1
+		 WHERE bno=#{bno}
+	</update>
 	
 	<!-- ===================================================================================================================== -->
 	<!-- ReplyDAO -->

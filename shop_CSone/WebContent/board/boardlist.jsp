@@ -123,7 +123,6 @@
 	}
 	
 	
-	
 	/* 페이지네이션 */
 	#b_wrap {
 		padding: 0;
@@ -288,9 +287,11 @@
 		</table>
 		
 	<!-- 검색 결과 -->
-	<div id="search_result">
-	 <span>${keyword}의 검색 결과는 총""개 입니다.</span>
-	</div>
+	<c:if test="${not empty flag}">
+		<div class="search_result">
+			${keyword}에 대한 검색 결과가 총 ${pageMaker.totalCount}개 나왔습니다.	
+		</div>
+	</c:if>
 	
 	
 	<div id="b_wrap">
