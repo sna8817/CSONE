@@ -197,6 +197,8 @@ public class BoardDAO {
 	public void boardReplyCntPlus(int bno) {
 		sqlSession = sqlSessionFactory.openSession();
 		try {
+			System.out.println("댓글 추가 중....");
+			System.out.println(bno);
 			sqlSession.update("rpPlus",bno);
 			sqlSession.commit();
 		} catch (Exception e) {
