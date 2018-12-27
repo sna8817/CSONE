@@ -634,7 +634,7 @@
 		 	</tr>
 		 	<tr class="line">
 		 		<th style="width: 100px">subject</th>
-		 		<th style="width: 900px">${boardview.title}<i class="fa fa-eye">[${boardview.viewcnt}]</i><i class="fa fa-comment-dots">${boardView.replycnt}</i></th>
+		 		<th style="width: 900px">${boardview.title}<i class="fa fa-eye" style="padding-left: 15px;">[${boardview.viewcnt}]</i><i class="fa fa-comment-dots">${boardView.replycnt}</i></th>
 		 	</tr>
 		 	<tr class="line">
 		 		<th style="width: 100px">writer</th>
@@ -750,3 +750,4 @@
 	
 </body>
 </html>
+<%@ include file="../include/footer.jsp" %>

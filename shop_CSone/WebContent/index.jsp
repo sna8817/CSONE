@@ -15,8 +15,11 @@
 * {/* box-sizing: border-box; */}
 
 body {
-font-family: 'Yeon Sung', cursive;
 	min-width: 1320px;
+}
+body*:not(.fa){
+	font-family: 'Yeon Sung', cursive;
+
 }
 a {
 	color: black;
@@ -153,7 +156,9 @@ hr {
 	.best_prise {
 		float: right;
 	}
-	
+	.fa {
+		color: red;
+	}
 	
 	
 	
@@ -336,6 +341,9 @@ hr {
 		border: 1px solid #fd999a;
 		border-radius: 30px;
 	}
+	.love {
+		float: right;
+	}
 </style>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -426,11 +434,13 @@ hr {
 								<span>가격: <fmt:formatNumber value="${bestDto.p_price}" type="currency"/></span>
 <%-- 								<span>가격: <fmt:formatNumber value="0.25" type="percent"/></span>
 								<span>가격: <fmt:formatNumber value="3.141589" pattern="#.##"/></span> --%>
-								<button type="button" class="btn_like">
-								<span class="img_emoti">좋아요</span>
+								<!-- <button type="button" class="btn_like"> -->
+								<div class="love">
+								<span><i class="fa fa-heart"></i>좋아요</span>
   								<span class="ani_heart_m"></span>
-								</button>
+								<!-- </button> -->
 								<span>${bestDto.p_goodcnt}</span>
+								</div>
 								</div>
 							</div>
 						</div>
@@ -466,11 +476,13 @@ hr {
 								<span>가격: <fmt:formatNumber value="${newDto.p_price}" type="currency"/></span>
 <%-- 								<span>가격: <fmt:formatNumber value="0.25" type="percent"/></span>
 								<span>가격: <fmt:formatNumber value="3.141589" pattern="#.##"/></span> --%>
-								<button type="button" class="btn_like">
-								<span class="img_emoti">좋아요</span>
+								<!-- <button type="button" class="btn_like"> -->
+								<div class="love">
+								<span><i class="fa fa-heart"></i>좋아요</span>
   								<span class="ani_heart_m"></span>
-								</button>
+								<!-- </button> -->
 								<span>${newDto.p_goodcnt}</span>
+								</div>
 								</div>
 							</div>
 						</div>
