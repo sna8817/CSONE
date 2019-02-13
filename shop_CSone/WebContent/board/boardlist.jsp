@@ -289,7 +289,7 @@
 	<!-- 검색 결과 -->
 	<c:if test="${not empty flag}">
 		<div class="search_result">
-			${keyword}에 대한 검색 결과가 총 ${pageMaker.totalCount}개 나왔습니다.	
+			<span style="color: red;">"${keyword}"</span>에 대한 검색 결과가 총 ${pageMaker.totalCount}개 나왔습니다.	
 		</div>
 	</c:if>
 	

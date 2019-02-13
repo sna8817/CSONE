@@ -382,7 +382,7 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="#">Special order</a>
+							<li><a href="#">Order</a>
 								<div class="header_line3_dropdown">
 									<ul>
 										<li><a href="#">flower</a></li>

@@ -496,7 +496,7 @@
 		border-radius: 30px;
 	}
 
-
+	
 
 
 
@@ -750,4 +750,3 @@
 	
 </body>
 </html>
-<%@ include file="../include/footer.jsp" %>

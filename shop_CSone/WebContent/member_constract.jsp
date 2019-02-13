@@ -404,10 +404,11 @@ h3.article_title {
 
 			/* alert(filsu1+","+filsu2); */
 			if(filsu1 == true && filsu2 == true) {
-				location.href = "member_join.jsp"
+				 location.href = "member_join.jsp"
 				/* $(".btn_agree").attr("href","http://localhost:8081/shop_csone/member.html"); */
 			} else {
 				$("#err_check").css("display", "block");
+				
 			}
 		});
 	});
@@ -519,7 +520,7 @@ h3.article_title {
 				</div>
 				<div class="btn_double_area">
 					<span><a href="#" class="btn_type btn_default">비동의</a></span>
-					<span><a href="member.bizpoll" class="btn_type btn_agree">동의</a></span>
+					<span><a href="#" class="btn_type btn_agree">동의</a></span>
 				</div>
 			</form>
 			<div class="group_join">

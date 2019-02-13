@@ -135,11 +135,89 @@
 #member_last_wrap {
 	padding-top: 20px;
 }
-
-
 </style>
 
 
+
+</head>
+<body id="body_join">
+	<div id="signin_wrap">
+		<h1>JOIN</h1>
+		<section>
+			<form name="frm_mem" action="memberplay.bizpoll" method="POST" id="frm_mem">
+				<div class="div_input" id="signin_id">
+					<label for="inputid" id="la_id">아이디</label>
+					<input type="text" id="inputid" class="input_signin" name="inputid">
+					<span class="error">필수 정보입니다.</span>
+					<span class="error">이미 등록된 아이디입니다.</span>
+				</div>
+				<!-- <div id="id_check" class="check">사용 가능한 아이디입니다.</div> -->
+				<div class="div_input" id="signin_pw">
+					<label for="inputpw" id="la_pw">비밀번호</label>
+					<input type="password" 	id="inputpw" class="input_signin" name="inputpw">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<div class="div_input" id="signin_pw2">
+					<label for="inputpw2" id="la_pw2">비밀번호 재확인</label>
+					<input type="password" id="inputpw2" class="input_signin">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<!-- <div id="pw2_check" class="check">비밀번호가 일치합니다.</div> -->
+				<div><hr id="join_bar"></div>
+				<div class="div_input" id="signin_name">
+					<label for="inputname" id="la_name">이름</label>
+					<input type="text" id="inputname" class="input_signin" name="inputname">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<div class="div_input" id="signin_phone">
+					<label for="inputphone" id="la_phone">전화번호</label>
+					<input type="text" id="inputphone" class="input_signin" name="inputphone">
+					<span class="error">필수 정보입니다.</span>
+				</div>
+				<!-- <div class="div_input" id="signin_address">
+					<label for="inputaddress" id="la_address">주소</label>
+					<input type="text" id="inputaddress" class="input_signin">
+				</div>
+				<div class="div_input" id="signin_email">
+					<label for="inputemail" id="la_email">이메일</label>
+					<input type="text"  id="inputemail" class="input_signin">
+				</div> -->
+				
+		<div id="member_last_wrap">
+		<div id="wrap_email">
+		<input type="text" id="email_id" placeholder="ID" name="email_id"> <span>
+			@ </span> <input type="text" id="email_url" placeholder="URL" name="email_url"> <select
+			id="selmail">
+			<option value="" selected="selected">Email 선택</option>
+			<option value="directVal">직접 입력</option>
+			<option value="naver.com">naver.com(네이버)</option>
+			<option value="daum.net">daum.net(다음카카오)</option>
+			<option value="gamil.com">gamil.com(구글)</option>
+			<option value="nate.com">nate.com(네이트)</option>
+		</select>
+			<span class="error">필수 정보입니다.</span>
+		</div>
+				
+			<div id="wrap_addr">
+			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly="readonly" name="sample6_postcode">
+			<input type="button" id="addr_find" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+			<input type="text" id="sample6_address" placeholder="주소" readonly="readonly" name="sample6_address">
+			<input type="text" id="sample6_address2" placeholder="상세주소" name="sample6_address2">
+			<span class="error">필수 정보입니다.</span>
+			</div>	
+		</div>
+				
+				
+				<div>
+					<a href="#" id="btn_member_login" class="btn_agree">회원가입</a>
+				</div>
+			</form>
+		</section>
+		
+
+	</div>
+</body>
+</html>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -450,83 +528,4 @@
         }).open();
     }
 </script>
-</head>
-<body id="body_join">
-	<div id="signin_wrap">
-		<h1>JOIN</h1>
-		<section>
-			<form name="frm_mem" action="memberplay.bizpoll" method="POST" id="frm_mem">
-				<div class="div_input" id="signin_id">
-					<label for="inputid" id="la_id">아이디</label>
-					<input type="text" id="inputid" class="input_signin" name="inputid">
-					<span class="error">필수 정보입니다.</span>
-					<span class="error">이미 등록된 아이디입니다.</span>
-				</div>
-				<!-- <div id="id_check" class="check">사용 가능한 아이디입니다.</div> -->
-				<div class="div_input" id="signin_pw">
-					<label for="inputpw" id="la_pw">비밀번호</label>
-					<input type="password" 	id="inputpw" class="input_signin" name="inputpw">
-					<span class="error">필수 정보입니다.</span>
-				</div>
-				<div class="div_input" id="signin_pw2">
-					<label for="inputpw2" id="la_pw2">비밀번호 재확인</label>
-					<input type="password" id="inputpw2" class="input_signin">
-					<span class="error">필수 정보입니다.</span>
-				</div>
-				<!-- <div id="pw2_check" class="check">비밀번호가 일치합니다.</div> -->
-				<div><hr id="join_bar"></div>
-				<div class="div_input" id="signin_name">
-					<label for="inputname" id="la_name">이름</label>
-					<input type="text" id="inputname" class="input_signin" name="inputname">
-					<span class="error">필수 정보입니다.</span>
-				</div>
-				<div class="div_input" id="signin_phone">
-					<label for="inputphone" id="la_phone">전화번호</label>
-					<input type="text" id="inputphone" class="input_signin" name="inputphone">
-					<span class="error">필수 정보입니다.</span>
-				</div>
-				<!-- <div class="div_input" id="signin_address">
-					<label for="inputaddress" id="la_address">주소</label>
-					<input type="text" id="inputaddress" class="input_signin">
-				</div>
-				<div class="div_input" id="signin_email">
-					<label for="inputemail" id="la_email">이메일</label>
-					<input type="text"  id="inputemail" class="input_signin">
-				</div> -->
-				
-		<div id="member_last_wrap">
-		<div id="wrap_email">
-		<input type="text" id="email_id" placeholder="ID" name="email_id"> <span>
-			@ </span> <input type="text" id="email_url" placeholder="URL" name="email_url"> <select
-			id="selmail">
-			<option value="" selected="selected">Email 선택</option>
-			<option value="directVal">직접 입력</option>
-			<option value="naver.com">naver.com(네이버)</option>
-			<option value="daum.net">daum.net(다음카카오)</option>
-			<option value="gamil.com">gamil.com(구글)</option>
-			<option value="nate.com">nate.com(네이트)</option>
-		</select>
-			<span class="error">필수 정보입니다.</span>
-		</div>
-				
-			<div id="wrap_addr">
-			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly="readonly" name="sample6_postcode">
-			<input type="button" id="addr_find" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample6_address" placeholder="주소" readonly="readonly" name="sample6_address">
-			<input type="text" id="sample6_address2" placeholder="상세주소" name="sample6_address2">
-			<span class="error">필수 정보입니다.</span>
-			</div>	
-		</div>
-				
-				
-				<div>
-					<a href="#" id="btn_member_login" class="btn_agree">회원가입</a>
-				</div>
-			</form>
-		</section>
-		
-
-	</div>
-</body>
-</html>
 <%@ include file="include/footer.jsp" %>
